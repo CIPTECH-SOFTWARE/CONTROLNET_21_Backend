@@ -20,7 +20,6 @@ namespace CubicoWMSBackend.Service
         {
             _loginRepository = loginRepository;
         }
-
         public async Task<LoginDTO> ValidateUser(Usuario usuario)
         {
             return await _loginRepository.ValidateUser(usuario);
