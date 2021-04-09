@@ -8,7 +8,7 @@ using CubicoWMSBackend.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-
+using ControlNetBackend.DTO;
 namespace CubicoWMSBackend.Controllers
 {
     [Route("api/[controller]")]
@@ -48,5 +48,23 @@ namespace CubicoWMSBackend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        //[HttpGet]
+        //[Route("LISTA_USUARIO_EMPRESA")]
+        //public  IEnumerable<UsuarioEmpresaDTO> GET(int ID_USER)
+        //{
+        //    //try
+        //    //{
+                
+        //        var listaUsuarioEmpresa =  _loginService.ListarUsuarioEmpresa(ID_USER);
+                
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    //return BadRequest(ex.Message);
+        //    //}
+        //    return listaUsuarioEmpresa;
+        //}
     }
 }

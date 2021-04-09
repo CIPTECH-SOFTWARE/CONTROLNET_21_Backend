@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CubicoWMSBackend.DTO;
-using Microsoft.AspNetCore.Http;
+﻿using CubicoWMSBackend.DTO;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CubicoWMSBackend.Controllers
 {

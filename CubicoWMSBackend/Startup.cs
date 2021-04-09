@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ControlNetBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.IService;
+using ControlNetBackend.Persistence.Repositories;
+using ControlNetBackend.Service;
 using CubicoWMSBackend.Domain.IRepositories;
 using CubicoWMSBackend.Domain.IService;
 using CubicoWMSBackend.Persistence.Context;
@@ -11,14 +10,13 @@ using CubicoWMSBackend.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-
+using System;
+using System.Text;
 namespace CubicoWMSBackend
 {
     public class Startup
@@ -39,11 +37,14 @@ namespace CubicoWMSBackend
             //Service
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ISedeService, SedeService>();
+            services.AddScoped<IEmpresaService,EmpresaService>();
 
             //Repository
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<AppDBContext, LoginRepository>();
-
+            services.AddScoped<ISedeRepository, SedeRepository>();
+            services.AddScoped<IEmpresaRepository,EmpresaRepository>();
             //cors
             services.AddCors(options => options.AddPolicy("AllowWebApp",
                     builder=> builder.AllowAnyOrigin()

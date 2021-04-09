@@ -10,6 +10,6 @@ namespace CubicoWMSBackend.Domain.IService
     public interface ILoginService
     {
         Task<LoginDTO> ValidateUser(Usuario usuario);
-    
+        //IEnumerable<UsuarioEmpresaDTO> ListarUsuarioEmpresa(int ID_USER);
     }
 }

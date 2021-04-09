@@ -10,5 +10,6 @@ namespace CubicoWMSBackend.Domain.IRepositories
     public interface AppDBContext
     {
         Task<LoginDTO> ValidateUser(Usuario usuario);
+       
     } 
 }

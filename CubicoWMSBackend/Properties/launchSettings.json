@@ -31,7 +31,12 @@
       "applicationUrl": "http://localhost:5000"
     },
     "ControlNetBackend": {
-      "commandName": "IIS"
+      "commandName": "IIS",
+      "launchBrowser": true,
+      "launchUrl": "api/Default",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

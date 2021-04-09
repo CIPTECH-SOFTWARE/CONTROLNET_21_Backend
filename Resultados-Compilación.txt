@@ -1,0 +1,2 @@
+﻿1>------ Operación Compilar iniciada: proyecto: ControlNetBackend, configuración: Debug Any CPU ------
+========== Compilar: 0 correctos, 1 incorrectos, 0 actualizados, 0 omitidos ==========

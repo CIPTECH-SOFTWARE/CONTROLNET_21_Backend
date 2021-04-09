@@ -2,15 +2,13 @@
 using CubicoWMSBackend.Domain.IRepositories;
 using CubicoWMSBackend.Domain.Models;
 using CubicoWMSBackend.Persistence.Context;
-using CubicoWMSBackend.Utils;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace CubicoWMSBackend.Persistence.Repositories
 {
@@ -22,6 +20,12 @@ namespace CubicoWMSBackend.Persistence.Repositories
         {
             _appDBContext = appDBContext;
         }
+
+        //public IEnumerable<UsuarioEmpresaDTO> ListarUsuarioEmpresa(int ID_USER)
+        //{
+        //    var ListaUsuarioEmpresa = getListarUsuarioEmpresa(ID_USER);
+        //    return ListaUsuarioEmpresa;
+        //}
 
         public async Task<LoginDTO> ValidateUser(Usuario usuario)
         {
@@ -118,6 +122,49 @@ namespace CubicoWMSBackend.Persistence.Repositories
 
         }
 
+        //private List<UsuarioEmpresaDTO> getListarUsuarioEmpresa(int ID_USER)
+        //{
+        //    List<UsuarioEmpresaDTO> ListaUsuarioEmpresaDTO = new List<UsuarioEmpresaDTO>();
+        //    //ListaUsuarioEmpresaDTO = null;
+        //    string cnxString = _appDBContext.Database.GetConnectionString();
+        //    SqlConnection cnx = new SqlConnection(cnxString);
+        //    try
+        //    {
+        //        cnx.Open();
+        //        using (SqlCommand Sqlcmd = new SqlCommand())
+        //        {
+        //            Sqlcmd.Connection = cnx;
+        //            Sqlcmd.CommandType = CommandType.StoredProcedure;
+        //            Sqlcmd.CommandText = "SP_S_Listar_Usuario_Empresa_21";
+        //            Sqlcmd.Parameters.Clear();
+        //            Sqlcmd.Parameters.Add("@Id_User", SqlDbType.Int).Value = ID_USER;
+        //            SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
+        //            while (oDataReader.Read())
+        //            {
+        //                UsuarioEmpresaDTO usuarioEmpresaDTO = new UsuarioEmpresaDTO();
+        //                usuarioEmpresaDTO.ID_USER = int.Parse(oDataReader[0].ToString());
+        //                usuarioEmpresaDTO.COD_EMPRESA= int.Parse(oDataReader[1].ToString());
+        //                usuarioEmpresaDTO.DES_EMPRESA = oDataReader[2].ToString();
+        //                ListaUsuarioEmpresaDTO.Add(usuarioEmpresaDTO);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //    finally
+        //    {
+        //        if (cnx.State == System.Data.ConnectionState.Open)
+        //        {
+        //            cnx.Close();
+        //        }
+        //    }
+
+
+        //    return ListaUsuarioEmpresaDTO;
+
+        //}
 
     }
 }
