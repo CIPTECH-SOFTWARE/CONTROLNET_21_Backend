@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using ControlNetBackend.DTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Net;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace ControlNetBackend.Controllers
 {
@@ -26,10 +30,13 @@ namespace ControlNetBackend.Controllers
 
         [HttpGet]
         [Route("LISTA_USUARIO_EMPRESA")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> GET(int ID_USER)
         {
             try
             {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
                 var listaUsuarioEmpresa = await _EmpresaService.ListarUsuarioEmpresa(ID_USER);
                 return Ok(listaUsuarioEmpresa);
