@@ -52,6 +52,7 @@ namespace ControlNetBackend.Persistence.Repositories
                             usuarioSedeDTO.cod_sede= int.Parse(oDataReader[1].ToString());
                             usuarioSedeDTO.des_sede = oDataReader[2].ToString();
                             ListaUsuarioSedeDTO.Add(usuarioSedeDTO);
+
                         }
                     }
                 }
