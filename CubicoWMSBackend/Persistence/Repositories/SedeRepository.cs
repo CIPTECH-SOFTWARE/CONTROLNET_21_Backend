@@ -48,9 +48,9 @@ namespace ControlNetBackend.Persistence.Repositories
                         while (oDataReader.Read())
                         {
                             UsuarioSedeDTO usuarioSedeDTO = new UsuarioSedeDTO();
-                            usuarioSedeDTO.ID_USER = int.Parse(oDataReader[0].ToString());
-                            usuarioSedeDTO.COD_SEDE= int.Parse(oDataReader[1].ToString());
-                            usuarioSedeDTO.DES_SEDE = oDataReader[2].ToString();
+                            usuarioSedeDTO.id_user = int.Parse(oDataReader[0].ToString());
+                            usuarioSedeDTO.cod_sede= int.Parse(oDataReader[1].ToString());
+                            usuarioSedeDTO.des_sede = oDataReader[2].ToString();
                             ListaUsuarioSedeDTO.Add(usuarioSedeDTO);
                         }
                     }

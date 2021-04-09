@@ -2,9 +2,9 @@
 {
     public class UsuarioEmpresaDTO
     {
-        public int ID_USER { get; set; }
-        public int COD_EMPRESA { get; set; }
-        public string DES_EMPRESA { get; set; }
+        public int id_user { get; set; }
+        public int cod_empresa { get; set; }
+        public string des_empresa { get; set; }
        
     }
 }

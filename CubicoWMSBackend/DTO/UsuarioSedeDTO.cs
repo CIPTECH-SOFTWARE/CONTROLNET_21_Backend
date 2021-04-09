@@ -7,9 +7,9 @@ namespace ControlNetBackend.DTO
 {
     public class UsuarioSedeDTO
     {
-        public int ID_USER { get; set; }
-        public int COD_SEDE{ get; set; }
-        public string DES_SEDE{ get; set; }
+        public int id_user { get; set; }
+        public int cod_sede{ get; set; }
+        public string des_sede{ get; set; }
 
 
 
