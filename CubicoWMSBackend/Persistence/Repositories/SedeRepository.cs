@@ -23,7 +23,11 @@ namespace ControlNetBackend.Persistence.Repositories
             _appDBContext = context;
         }
 
-        public IEnumerable<UsuarioSedeDTO> ListarUsuarioSede(int ID_USER)
+        
+
+
+
+        private List<UsuarioSedeDTO> getListarUsuarioSede(int ID_USER)
         {
             {
                 List<UsuarioSedeDTO> ListaUsuarioSedeDTO = new List<UsuarioSedeDTO>();
@@ -67,6 +71,12 @@ namespace ControlNetBackend.Persistence.Repositories
                 return ListaUsuarioSedeDTO;
 
             }
+        }
+
+        public async Task<List<UsuarioSedeDTO>> ListarUsuarioSede(int ID_USER)
+        {
+            var LISTA =  getListarUsuarioSede(ID_USER);
+            return LISTA;
         }
     }
 }

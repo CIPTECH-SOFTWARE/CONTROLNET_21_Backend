@@ -7,7 +7,7 @@ namespace ControlNetBackend.Domain.IRepositories
 {
    public interface ISedeRepository
     {
-        IEnumerable<UsuarioSedeDTO> ListarUsuarioSede(int ID_USER);
+        Task<List<UsuarioSedeDTO>> ListarUsuarioSede(int ID_USER);
 
     }
 }

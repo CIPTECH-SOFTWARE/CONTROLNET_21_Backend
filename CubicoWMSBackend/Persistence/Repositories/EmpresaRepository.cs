@@ -7,6 +7,8 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
+
 namespace ControlNetBackend.Persistence.Repositories
 {
     public class EmpresaRepository : IEmpresaRepository
@@ -18,7 +20,8 @@ namespace ControlNetBackend.Persistence.Repositories
             _appDBContext = appDBContext;
         }
 
-        public IEnumerable<UsuarioEmpresaDTO> ListarUsuarioEmpresa(int ID_USER)
+
+        public List<UsuarioEmpresaDTO> getListarUsuarioEmpresa(int ID_USER)
         {
             List<UsuarioEmpresaDTO> ListaUsuarioEmpresaDTO = new List<UsuarioEmpresaDTO>();
             //ListaUsuarioEmpresaDTO = null;
@@ -60,6 +63,12 @@ namespace ControlNetBackend.Persistence.Repositories
 
             return ListaUsuarioEmpresaDTO;
 
+        }
+
+        public async Task<List<UsuarioEmpresaDTO>> ListarUsuarioEmpresa(int ID_USER)
+        {
+            var LISTA = getListarUsuarioEmpresa(ID_USER);
+            return LISTA;
         }
     }
 }

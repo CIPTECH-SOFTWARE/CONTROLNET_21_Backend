@@ -26,21 +26,19 @@ namespace ControlNetBackend.Controllers
 
         [HttpGet]
         [Route("LISTA_USUARIO_EMPRESA")]
-        public IEnumerable<UsuarioEmpresaDTO> GET(int ID_USER)
+        public async Task<IActionResult> GET(int ID_USER)
         {
-            //try
-            //{
+            try
+            {
 
-            var listaUsuarioEmpresa= _EmpresaService.ListarUsuarioEmpresa(ID_USER);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    //return BadRequest(ex.Message);
-            //}
-            return listaUsuarioEmpresa;
+                var listaUsuarioEmpresa = await _EmpresaService.ListarUsuarioEmpresa(ID_USER);
+                return Ok(listaUsuarioEmpresa);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-
 
 
     }

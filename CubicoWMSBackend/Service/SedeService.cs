@@ -14,9 +14,9 @@ namespace ControlNetBackend.Service
         {
             _SedeRepository = SedeRepository;
         }
-        public IEnumerable<UsuarioSedeDTO> ListarUsuarioSede(int ID_USER)
+        public async Task<List<UsuarioSedeDTO>> ListarUsuarioSede(int ID_USER)
         {
-            return  _SedeRepository.ListarUsuarioSede(ID_USER);
+            return  await _SedeRepository.ListarUsuarioSede(ID_USER);
         }
     }
 }

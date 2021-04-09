@@ -7,7 +7,7 @@ namespace ControlNetBackend.Domain.IService
 {
    public interface IEmpresaService
     {
-        IEnumerable<UsuarioEmpresaDTO> ListarUsuarioEmpresa(int ID_USER);
+        Task<List<UsuarioEmpresaDTO>> ListarUsuarioEmpresa(int ID_USER);
 
     }
 }

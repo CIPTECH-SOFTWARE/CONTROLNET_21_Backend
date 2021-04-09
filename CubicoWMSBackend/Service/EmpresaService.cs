@@ -16,9 +16,10 @@ namespace ControlNetBackend.Service
         {
             _EmpresaRepository = EmpresaRepository;
         }
-        public IEnumerable<UsuarioEmpresaDTO> ListarUsuarioEmpresa(int ID_USER)
+
+        public async Task<List<UsuarioEmpresaDTO>> ListarUsuarioEmpresa(int ID_USER)
         {
-            return _EmpresaRepository.ListarUsuarioEmpresa(ID_USER);
+            return await _EmpresaRepository.ListarUsuarioEmpresa(ID_USER);
         }
     }
 }

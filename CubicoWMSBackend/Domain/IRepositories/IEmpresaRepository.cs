@@ -7,6 +7,6 @@ namespace ControlNetBackend.Domain.IRepositories
 {
    public  interface IEmpresaRepository
     {
-        IEnumerable<UsuarioEmpresaDTO> ListarUsuarioEmpresa(int ID_USER);
+        Task<List<UsuarioEmpresaDTO>> ListarUsuarioEmpresa(int ID_USER);
     }
 }

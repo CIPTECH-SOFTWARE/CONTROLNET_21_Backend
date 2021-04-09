@@ -25,19 +25,19 @@ namespace ControlNetBackend.Controllers
 
         [HttpGet]
         [Route("LISTA_USUARIO_SEDE")]
-        public IEnumerable<UsuarioSedeDTO> GET(int ID_USER)
+        public async Task<IActionResult> GET(int ID_USER)
         {
-            //try
-            //{
+            try
+            {
 
-            var listaUsuarioSede = _SedeService.ListarUsuarioSede(ID_USER);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    //return BadRequest(ex.Message);
-            //}
-            return listaUsuarioSede;
+                var listaUsuarioSede = await _SedeService.ListarUsuarioSede(ID_USER);
+                return Ok(listaUsuarioSede);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
 
     }

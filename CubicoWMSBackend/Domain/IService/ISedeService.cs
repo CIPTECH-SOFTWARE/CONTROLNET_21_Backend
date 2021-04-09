@@ -7,7 +7,7 @@ namespace ControlNetBackend.Domain.IService
 {
     public interface ISedeService
     {
-        IEnumerable<UsuarioSedeDTO> ListarUsuarioSede(int ID_USER);
+        Task<List<UsuarioSedeDTO>> ListarUsuarioSede(int ID_USER);
 
     }
 }
