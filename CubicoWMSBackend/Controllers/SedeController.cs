@@ -50,5 +50,28 @@ namespace ControlNetBackend.Controllers
             
         }
 
+
+        [HttpGet]
+        [Route("LISTA_SEDE")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETListaSede(int COD_EMPRESA)
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var listaSede = await _SedeService.ListarSede(COD_EMPRESA);
+                    return Ok(listaSede);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
     }
 }

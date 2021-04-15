@@ -14,6 +14,12 @@ namespace ControlNetBackend.Service
         {
             _SedeRepository = SedeRepository;
         }
+
+        public async Task<List<SedeDTO>> ListarSede(int COD_EMPRESA)
+        {
+            return await _SedeRepository.ListarSede(COD_EMPRESA);
+        }
+
         public async Task<List<UsuarioSedeDTO>> ListarUsuarioSede(int ID_USER)
         {
             return  await _SedeRepository.ListarUsuarioSede(ID_USER);
