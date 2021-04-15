@@ -39,12 +39,13 @@ namespace CubicoWMSBackend
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<ISedeService, SedeService>();
             services.AddScoped<IEmpresaService,EmpresaService>();
-
+            services.AddScoped<IMenuAccesoService, MenuAccesoService>();
             //Repository
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<AppDBContext, LoginRepository>();
             services.AddScoped<ISedeRepository, SedeRepository>();
             services.AddScoped<IEmpresaRepository,EmpresaRepository>();
+            services.AddScoped<IMenuAccesoRepository, MenuAccesoRepository>();
             //cors
             services.AddCors(options => options.AddPolicy("AllowWebApp",
                     builder=> builder.AllowAnyOrigin()
