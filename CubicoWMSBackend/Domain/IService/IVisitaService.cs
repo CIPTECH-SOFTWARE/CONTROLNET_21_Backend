@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 namespace ControlNetBackend.Domain.IService
 {
-   public interface IEmpresaService
+  public  interface IVisitaService
     {
-        Task<List<UsuarioEmpresaDTO>> ListarUsuarioEmpresa(int ID_USER);
+
 
     }
 }

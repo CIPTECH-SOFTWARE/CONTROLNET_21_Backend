@@ -1,6 +1,6 @@
 ﻿using ControlNetBackend.DTO;
 using CubicoWMSBackend.Domain.IRepositories;
-using CubicoWMSBackend.Domain.Models;
+using ControlNetBackend.Domain.Models;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -77,17 +77,17 @@ namespace CubicoWMSBackend.Persistence.Repositories
                         loginDTO = new LoginDTO();
                         loginDTO.usuario = usuario.NombreUsuario;
                         loginDTO.password = "";
-                        loginDTO.ID_USER = int.Parse(oDataReader[0].ToString());
-                        loginDTO.ID_PERFIL = int.Parse(oDataReader[1].ToString());
-                        loginDTO.COD_PERSONAL = oDataReader[2].ToString();
-                        loginDTO.NOM_USUARIO = oDataReader[3].ToString();
-                        loginDTO.COD_CENTRO_COSTO = int.Parse(oDataReader[4].ToString());
-                        loginDTO.DES_CENTRO_COSTO = oDataReader[5].ToString();
-                        loginDTO.NOM_COMPLETO_PERSONAL = oDataReader[6].ToString();
-                        loginDTO.IND_ACTIVO = (oDataReader[7].ToString()=="True"?1:0);
-                        loginDTO.ESTADO_PERFIL = (oDataReader[8].ToString() == "True" ? 1 : 0);
-                        loginDTO.RESPUESTA = (oDataReader[9].ToString() == "True" ? 1 : 0);
-                        loginDTO.MENSAJE = oDataReader[10].ToString();
+                        loginDTO.id_user = int.Parse(oDataReader[0].ToString());
+                        loginDTO.id_perfil= int.Parse(oDataReader[1].ToString());
+                        loginDTO.cod_personal = oDataReader[2].ToString();
+                        loginDTO.nom_usuario = oDataReader[3].ToString();
+                        loginDTO.cod_centro_costo = int.Parse(oDataReader[4].ToString());
+                        loginDTO.des_centro_costo = oDataReader[5].ToString();
+                        loginDTO.nom_completo_personal = oDataReader[6].ToString();
+                        loginDTO.ind_activo = (oDataReader[7].ToString()=="True"?1:0);
+                        loginDTO.estado_perfil = (oDataReader[8].ToString() == "True" ? 1 : 0);
+                        loginDTO.respuesta = (oDataReader[9].ToString() == "True" ? 1 : 0);
+                        loginDTO.mensaje = oDataReader[10].ToString();
 
                     }
                  }

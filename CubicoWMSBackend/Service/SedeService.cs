@@ -1,8 +1,6 @@
-﻿using ControlNetBackend.Domain.IService;
+﻿using ControlNetBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.IService;
 using ControlNetBackend.DTO;
-using ControlNetBackend.Domain.IRepositories;
-using CubicoWMSBackend.Domain.IService;
-using CubicoWMSBackend.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 namespace ControlNetBackend.Service

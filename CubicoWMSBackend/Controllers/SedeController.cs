@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ControlNetBackend.Domain.IService;
-using CubicoWMSBackend.Domain.Models;
+﻿using ControlNetBackend.Domain.IService;
 using CubicoWMSBackend.Utils;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using ControlNetBackend.DTO;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Net;
-using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace ControlNetBackend.Controllers
 {

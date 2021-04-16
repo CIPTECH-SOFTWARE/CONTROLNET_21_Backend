@@ -6,17 +6,18 @@
         public string usuario { get; set; }
 
         public string password { get; set; }
-        public int ID_USER { get; set; }
-        public int ID_PERFIL { get; set; }
-        public string COD_PERSONAL { get; set; }
-        public string NOM_USUARIO { get; set; }
-        public int COD_CENTRO_COSTO { get; set; }
-        public string DES_CENTRO_COSTO { get; set; }
-        public string NOM_COMPLETO_PERSONAL { get; set; }
-        public int IND_ACTIVO { get; set; }
-        public int ESTADO_PERFIL { get; set; }
-        public int RESPUESTA { get; set; }
-        public string MENSAJE { get; set; }
+        public int id_user { get; set; }
+        public int id_perfil { get; set; }
+        public string cod_personal { get; set; }
+        public string nom_usuario { get; set; }
+        public int cod_centro_costo { get; set; }
+        public string des_centro_costo { get; set; }
+        public string nom_completo_personal { get; set; }
+        public int ind_activo { get; set; }
+        public int estado_perfil { get; set; }
+        public int respuesta { get; set; }
+        public string mensaje { get; set; }
+
 
 
 

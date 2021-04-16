@@ -8,11 +8,11 @@ namespace ControlNetBackend.DTO
     public class SedeDTO
     {
 
-		public int COD_SEDE { get; set; }
-		public string DES_SEDE { get; set; }
-		public string DIRECCION { get; set; }
-		public bool ACTIVO { get; set; }
-		public int COD_EMPRESA { get; set; }
+		public int cod_sede { get; set; }
+		public string des_sede { get; set; }
+		public string direccion { get; set; }
+		public bool activo { get; set; }
+		public int cod_empresa { get; set; }
 
 
 

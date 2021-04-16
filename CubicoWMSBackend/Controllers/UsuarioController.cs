@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CubicoWMSBackend.Domain.IService;
-using CubicoWMSBackend.Domain.Models;
+using ControlNetBackend.Domain.Models;
 using CubicoWMSBackend.DTO;
 using CubicoWMSBackend.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -69,6 +69,28 @@ namespace CubicoWMSBackend.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet]
+        [Route("RECUPERAR_PASSWORD")]
+       /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETRecuperarContraseña(String COD_USUARIO)
+        {
+            try
+            {
+                {
+                    //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var user = await _usuarioService.RecuperarPassword(COD_USUARIO);
+                    return Ok(user);
+                }
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
     }
 }

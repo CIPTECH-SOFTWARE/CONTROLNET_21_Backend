@@ -5,17 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CubicoWMSBackend.Domain.Models
+namespace ControlNetBackend.Domain.Models
 {
     public class Usuario
     {
         public int Id { get; set; }
-        [Required]
+        public string CodUsuario { get; set; }
         [Column(TypeName ="varchar(20)")]
         public string NombreUsuario { get; set; }
-        [Required]
         [Column(TypeName = "varchar(50)")]
         public string Password { get; set; }
+        public string email { get; set; }
+        public string DesPasswordRec { get; set; }
+
     }
 
 

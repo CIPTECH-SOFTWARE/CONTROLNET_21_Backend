@@ -1,6 +1,6 @@
 ﻿using ControlNetBackend.DTO;
 using ControlNetBackend.Domain.IRepositories;
-using CubicoWMSBackend.Domain.Models;
+using ControlNetBackend.Domain.Models;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -47,10 +47,10 @@ namespace ControlNetBackend.Persistence.Repositories
                     while (oDataReader.Read())
                     {
                         MenuAccesoPerfilDTO MenuAccesoPerfilDTO = new MenuAccesoPerfilDTO();
-                        MenuAccesoPerfilDTO.ID_PERFIL = int.Parse(oDataReader[0].ToString());
-                        MenuAccesoPerfilDTO.ID_MENU = int.Parse(oDataReader[1].ToString());
-                        MenuAccesoPerfilDTO.DES_MENU = oDataReader[2].ToString();
-                        MenuAccesoPerfilDTO.ID_PARENT = int.Parse(oDataReader[3].ToString());
+                        MenuAccesoPerfilDTO.id_perfil = int.Parse(oDataReader["ID_PERFIL"].ToString());
+                        MenuAccesoPerfilDTO.id_menu = int.Parse(oDataReader["ID_MENU"].ToString());
+                        MenuAccesoPerfilDTO.des_menu = oDataReader["ID_MENU"].ToString();
+                        MenuAccesoPerfilDTO.id_parent = int.Parse(oDataReader["ID_PARENT"].ToString());
                         ListaMenuAccesoPerfilDTO.Add(MenuAccesoPerfilDTO);
 
                     }

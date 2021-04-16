@@ -1,8 +1,6 @@
-﻿using System;
+﻿using ControlNetBackend.DTO;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using ControlNetBackend.DTO;
 namespace ControlNetBackend.Domain.IService
 {
  public interface IMenuAccesoService

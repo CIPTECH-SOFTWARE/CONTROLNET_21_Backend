@@ -1,5 +1,5 @@
 ﻿using ControlNetBackend.DTO;
-using CubicoWMSBackend.Domain.Models;
+using ControlNetBackend.Domain.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -24,12 +24,12 @@ namespace CubicoWMSBackend.Utils
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub,userinfo.NOM_USUARIO),
-                new Claim("idUsuario",userinfo.ID_USER.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub,userinfo.nom_usuario),
+                new Claim("idUsuario",userinfo.id_user.ToString()),
                 new Claim("Usuario",userinfo.usuario),
-                new Claim("Sede",userinfo.DES_CENTRO_COSTO),
-                new Claim("Respuesta",userinfo.RESPUESTA.ToString()),
-                new Claim("Message",userinfo.MENSAJE)
+                new Claim("Sede",userinfo.des_centro_costo),
+                new Claim("Respuesta",userinfo.respuesta.ToString()),
+                new Claim("Message",userinfo.mensaje)
             };
 
             var token = new JwtSecurityToken

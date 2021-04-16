@@ -1,7 +1,7 @@
 ﻿using ControlNetBackend.DTO;
 using CubicoWMSBackend.Domain.IRepositories;
 using CubicoWMSBackend.Domain.IService;
-using CubicoWMSBackend.Domain.Models;
+using ControlNetBackend.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CubicoWMSBackend.Domain.IService;
-using CubicoWMSBackend.Domain.Models;
+using ControlNetBackend.Domain.Models;
 using CubicoWMSBackend.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

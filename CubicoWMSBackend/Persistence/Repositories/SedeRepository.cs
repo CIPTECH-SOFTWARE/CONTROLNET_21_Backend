@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ControlNetBackend.Domain.IRepositories;
+﻿using ControlNetBackend.Domain.IRepositories;
 using ControlNetBackend.DTO;
-using CubicoWMSBackend.Domain.IRepositories;
-using CubicoWMSBackend.Domain.Models;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 
 
 namespace ControlNetBackend.Persistence.Repositories
@@ -22,8 +19,6 @@ namespace ControlNetBackend.Persistence.Repositories
         {
             _appDBContext = context;
         }
-
-             
         public async Task<List<UsuarioSedeDTO>> ListarUsuarioSede(int ID_USER)
         {
             var LISTA =  getListarUsuarioSede(ID_USER);
@@ -34,7 +29,6 @@ namespace ControlNetBackend.Persistence.Repositories
             var LISTA = getListarSede(COD_EMPRESA);
             return LISTA;
         }
-
         private List<UsuarioSedeDTO> getListarUsuarioSede(int ID_USER)
         {
 
@@ -101,10 +95,10 @@ namespace ControlNetBackend.Persistence.Repositories
                     while (oDataReader.Read())
                     {
                         SedeDTO SedeDTO = new SedeDTO();
-                        SedeDTO.COD_SEDE = int.Parse(oDataReader[0].ToString());
-                        SedeDTO.DES_SEDE = oDataReader[1].ToString();
-                        SedeDTO.DIRECCION = oDataReader[2].ToString();
-                        SedeDTO.ACTIVO = bool.Parse(oDataReader[3].ToString());
+                        SedeDTO.cod_sede = int.Parse(oDataReader[0].ToString());
+                        SedeDTO.des_sede = oDataReader[1].ToString();
+                        SedeDTO.direccion = oDataReader[2].ToString();
+                        SedeDTO.activo = bool.Parse(oDataReader[3].ToString());
                         ListaSedeDTO.Add(SedeDTO);
 
                     }

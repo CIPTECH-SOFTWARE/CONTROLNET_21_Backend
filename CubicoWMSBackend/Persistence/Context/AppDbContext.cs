@@ -1,4 +1,4 @@
-﻿using CubicoWMSBackend.Domain.Models;
+﻿using ControlNetBackend.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
