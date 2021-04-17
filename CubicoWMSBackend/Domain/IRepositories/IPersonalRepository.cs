@@ -6,5 +6,10 @@ namespace ControlNetBackend.Domain.IRepositories
 {
    public interface IPersonalRepository
     {
+        Task<PersonalLoginDTO> Personal_login(string COD_PERSONAL);
+
+
+
+
     }
 }

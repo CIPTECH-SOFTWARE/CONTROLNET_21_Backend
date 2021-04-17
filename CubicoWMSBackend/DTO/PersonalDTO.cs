@@ -28,4 +28,14 @@ namespace ControlNetBackend.DTO
 		public int cod_tipo_personal { get; set; }
 
 	}
+
+	public class PersonalLoginDTO
+	{
+		public string cod_personal { get; set; }
+		public string nom_personal { get; set; }
+		public string ape_paterno { get; set; }
+		public string ape_materno { get; set; }
+		public string email { get; set; }
+		public bool activo { get; set; }
+	}
 }

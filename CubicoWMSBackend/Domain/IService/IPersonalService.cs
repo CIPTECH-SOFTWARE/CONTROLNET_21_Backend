@@ -7,5 +7,7 @@ namespace ControlNetBackend.Domain.IService
 {
    public  interface IPersonalService
     {
+        Task<PersonalLoginDTO> Personal_login(string COD_PERSONAL);
+
     }
 }
