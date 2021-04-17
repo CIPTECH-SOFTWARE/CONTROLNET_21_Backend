@@ -51,8 +51,13 @@ namespace CubicoWMSBackend.Persistence.Repositories
             return user;
 
         }
+        public async Task<MensajeResultado> Valida_NuevoUsuario(string COD_USUARIO,string NOM_USUARIO)
+        {
+            var mensaje = getValida_NuevoUsuario(COD_USUARIO,NOM_USUARIO);
+            return mensaje;
 
-
+        }
+        
 
         private UsuarioDTO getRecuperarPassword(string COD_USUARIO)
         {
@@ -99,6 +104,50 @@ namespace CubicoWMSBackend.Persistence.Repositories
 
         }
 
-      
+        private MensajeResultado getValida_NuevoUsuario(string COD_USUARIO,string NOM_USUARIO)
+        {
+
+
+            MensajeResultado MENSAJE = new MensajeResultado();
+            MENSAJE = null;
+            string cnxString = _appDBContext.Database.GetConnectionString();
+            SqlConnection cnx = new SqlConnection(cnxString);
+            try
+            {
+                cnx.Open();
+                using (SqlCommand Sqlcmd = new SqlCommand())
+                {
+                    Sqlcmd.Connection = cnx;
+                    Sqlcmd.CommandType = CommandType.StoredProcedure;
+                    Sqlcmd.CommandText = "SP_S_Valida_NuevoUsuario_21";
+                    Sqlcmd.Parameters.Clear();
+                    Sqlcmd.Parameters.Add("@Cod_Usuario", SqlDbType.VarChar, 20).Value = COD_USUARIO;
+                    Sqlcmd.Parameters.Add("@Nom_Usuario", SqlDbType.VarChar, 50).Value = NOM_USUARIO;
+                    SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
+                    while (oDataReader.Read())
+                    {
+                        MENSAJE = new MensajeResultado();
+                        MENSAJE.mensaje = oDataReader["MENSAJE"].ToString();
+                        MENSAJE.resultado = int.Parse(oDataReader["RESULTADO"].ToString());
+                       
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (cnx.State == System.Data.ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
+            return MENSAJE;
+
+        }
+
+       
     }
 }

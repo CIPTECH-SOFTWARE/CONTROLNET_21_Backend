@@ -92,5 +92,27 @@ namespace CubicoWMSBackend.Controllers
             }
 
         }
+
+        [HttpGet]
+        [Route("VALIDAR_NUEVOUSUARIO")]
+        /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETValidar_NuevoUsuario(String COD_USUARIO,string NOM_USUARIO)
+        {
+            try
+            {
+                {
+                    //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var MENSAJE = await _usuarioService.Valida_NuevoUsuario(COD_USUARIO,NOM_USUARIO);
+                    return Ok(MENSAJE);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
     }
 }

@@ -14,6 +14,6 @@ namespace CubicoWMSBackend.Domain.IService
         Task UpdatePassword(Usuario usuario);
 
         Task<UsuarioDTO> RecuperarPassword(string COD_USUARIO);
-
+        Task<MensajeResultado> Valida_NuevoUsuario(string COD_USUARIO, string NOM_USUARIO);
     }
 }

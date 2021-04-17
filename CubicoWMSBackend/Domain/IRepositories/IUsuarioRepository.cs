@@ -16,5 +16,6 @@ namespace CubicoWMSBackend.Domain.IRepositories
 
         Task<UsuarioDTO> RecuperarPassword(string COD_USUARIO);
 
+        Task<MensajeResultado> Valida_NuevoUsuario(string COD_USUARIO,string NOM_USUARIO);
     }
 }

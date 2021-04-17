@@ -48,6 +48,10 @@ namespace CubicoWMSBackend.Service
 
         }
 
-       
+        public async Task<MensajeResultado> Valida_NuevoUsuario(string COD_USUARIO, string NOM_USUARIO)
+        {
+            return await _usuarioRepository.Valida_NuevoUsuario(COD_USUARIO,NOM_USUARIO);
+        }
+
     }
 }
