@@ -94,7 +94,7 @@ namespace CubicoWMSBackend.Controllers
         }
 
         [HttpGet]
-        [Route("VALIDAR_NUEVOUSUARIO")]
+        [Route("VALIDAR_NUEVOUSUARIO_LOGIN")]
         /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> GETValidar_NuevoUsuario(String COD_USUARIO,string NOM_USUARIO)
         {
@@ -105,6 +105,28 @@ namespace CubicoWMSBackend.Controllers
                     //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
                     var MENSAJE = await _usuarioService.Valida_NuevoUsuario(COD_USUARIO,NOM_USUARIO);
+                    return Ok(MENSAJE);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("GRABAR_NUEVOUSUARIO_LOGIN")]
+        /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETGrabar_Usuario_Login(string cod_personal, string nombre_usuario, string email, string cod_usuario, int cod_sede)
+        {
+            try
+            {
+                {
+                    //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var MENSAJE = await _usuarioService.Grabar_Usuario_Login(cod_personal, nombre_usuario, email, cod_usuario, cod_sede);
                     return Ok(MENSAJE);
                 }
             }

@@ -57,8 +57,13 @@ namespace CubicoWMSBackend.Persistence.Repositories
             return mensaje;
 
         }
-        
 
+        public async Task<MensajeResultado> Grabar_Usuario_Login(string cod_personal, string nombre_usuario, string email, string cod_usuario, int cod_sede)
+        {
+            var mensaje = getGrabar_Usuario_Login(cod_personal,  nombre_usuario,  email,  cod_usuario,  cod_sede);
+            return mensaje;
+
+        }
         private UsuarioDTO getRecuperarPassword(string COD_USUARIO)
         {
 
@@ -148,6 +153,54 @@ namespace CubicoWMSBackend.Persistence.Repositories
 
         }
 
-       
+        private MensajeResultado getGrabar_Usuario_Login(string cod_personal, string nombre_usuario, string email, string cod_usuario, int cod_sede)
+        {
+
+
+            MensajeResultado MENSAJE = new MensajeResultado();
+            MENSAJE = null;
+            string cnxString = _appDBContext.Database.GetConnectionString();
+            SqlConnection cnx = new SqlConnection(cnxString);
+            try
+            {
+                cnx.Open();
+                using (SqlCommand Sqlcmd = new SqlCommand())
+                {
+                    Sqlcmd.Connection = cnx;
+                    Sqlcmd.CommandType = CommandType.StoredProcedure;
+                    Sqlcmd.CommandText = "SP_TX_Grabar_Usuario_Login_21";
+                    Sqlcmd.Parameters.Clear();
+                    Sqlcmd.Parameters.Add("@Cod_Usuario", SqlDbType.VarChar, 20).Value = cod_usuario;
+                    Sqlcmd.Parameters.Add("@Nom_Usuario", SqlDbType.VarChar, 50).Value = nombre_usuario;
+                    Sqlcmd.Parameters.Add("@Cod_Personal", SqlDbType.VarChar, 50).Value = cod_personal;
+                    Sqlcmd.Parameters.Add("@Email", SqlDbType.VarChar, 100).Value = email;
+                    Sqlcmd.Parameters.Add("@Cod_Sede", SqlDbType.Int).Value = cod_sede;
+
+
+
+                    SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
+                    while (oDataReader.Read())
+                    {
+                        MENSAJE = new MensajeResultado();
+                        MENSAJE.mensaje = oDataReader["MENSAJE"].ToString();
+                        MENSAJE.resultado = int.Parse(oDataReader["RESULTADO"].ToString());
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (cnx.State == System.Data.ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
+            return MENSAJE;
+
+        }
     }
 }
