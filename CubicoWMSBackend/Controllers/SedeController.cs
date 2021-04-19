@@ -21,6 +21,28 @@ namespace ControlNetBackend.Controllers
            _SedeService = SedeService;
         }
 
+        [HttpGet]
+        [Route("LISTA_SEDE")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETListaSede(int COD_EMPRESA)
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var listaSede = await _SedeService.ListarSede_x_Empresa(COD_EMPRESA);
+                    return Ok(listaSede);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
 
         [HttpGet]
         [Route("LISTA_USUARIO_SEDE")]
@@ -44,11 +66,10 @@ namespace ControlNetBackend.Controllers
             
         }
 
-
         [HttpGet]
-        [Route("LISTA_SEDE")]
+        [Route("LISTA_USUARIO_SEDE_ACTIVO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> GETListaSede(int COD_EMPRESA)
+        public async Task<IActionResult> GET_ListaUsuarioSedeActivo(int ID_USER)
         {
             try
             {
@@ -56,8 +77,8 @@ namespace ControlNetBackend.Controllers
                     var identity = HttpContext.User.Identity as ClaimsIdentity;
                     int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
-                    var listaSede = await _SedeService.ListarSede(COD_EMPRESA);
-                    return Ok(listaSede);
+                    var listaUsuarioSede = await _SedeService.ListarUsuarioSede_activo(ID_USER);
+                    return Ok(listaUsuarioSede);
                 }
             }
             catch (Exception ex)
@@ -67,5 +88,7 @@ namespace ControlNetBackend.Controllers
 
         }
 
+
+      
     }
 }

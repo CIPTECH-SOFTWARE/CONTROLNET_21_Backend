@@ -27,6 +27,46 @@ namespace ControlNetBackend.Controllers
             _EmpresaService = EmpresaService;
         }
 
+        [HttpGet]
+        [Route("LISTA_EMPRESA")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult>    ListarEmpresaGET()
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                var listaEmpresa = await _EmpresaService.ListarEmpresa();
+                return Ok(listaEmpresa);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("LISTA_EMPRESA_ACTIVO")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> ListarEmpresaActivaGET(int COD_EMPRESA)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                var listaEmpresa = await _EmpresaService.ListarEmpresa_activa(COD_EMPRESA);
+                return Ok(listaEmpresa);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
 
         [HttpGet]
         [Route("LISTA_USUARIO_EMPRESA")]

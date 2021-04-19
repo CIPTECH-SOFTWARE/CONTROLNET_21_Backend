@@ -33,4 +33,20 @@ namespace ControlNetBackend.DTO
 
 
 	}
+
+	public class VisitaDiaDTO {
+
+		public string Img_Cod_Visitante { get; set; }
+		public string Nom_Visitante { get; set; }
+		public string Num_Doc { get; set; }
+		public int Cod_Tipo_Doc{ get; set; }
+	    public string Des_Tipo_Doc { get; set; }
+		public int Num_Cita { get; set; }
+		public int Cod_Visitante { get; set; }
+		public DateTime Fec_Ingreso { get; set; }
+		public string Hor_Ingreso { get; set; }
+
+
+
+	}
 }
