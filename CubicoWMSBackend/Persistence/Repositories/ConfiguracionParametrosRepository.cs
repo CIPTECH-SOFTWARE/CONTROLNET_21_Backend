@@ -44,8 +44,7 @@ namespace ControlNetBackend.Persistence.Repositories
                     Sqlcmd.Connection = cnx;
                     Sqlcmd.CommandType = CommandType.StoredProcedure;
                     Sqlcmd.CommandText = "SP_S_Listar_Parametros_Email_21";
-                    Sqlcmd.Parameters.Clear();
-                   
+                                   
                     SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
                     while (oDataReader.Read())
                     {
