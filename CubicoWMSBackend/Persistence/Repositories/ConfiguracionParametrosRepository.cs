@@ -178,7 +178,7 @@ namespace ControlNetBackend.Persistence.Repositories
                     while (oDataReader.Read())
                     {
 
-                        ConfiguracionParametrosDTO.Nombre_Archivo_01_out = oDataReader["Nombre_Archivo_01_outr"].ToString();
+                        ConfiguracionParametrosDTO.Nombre_Archivo_01_out = oDataReader["Nombre_Archivo_01_out"].ToString();
                         ConfiguracionParametrosDTO.Nombre_Archivo_02_out = oDataReader["Nombre_Archivo_02_out"].ToString();
                         ConfiguracionParametrosDTO.Nombre_Archivo_01_in = oDataReader["Nombre_Archivo_01_in"].ToString();
                         ConfiguracionParametrosDTO.Ruta_Archivos_Origen = oDataReader["Ruta_Archivos_Origen"].ToString();

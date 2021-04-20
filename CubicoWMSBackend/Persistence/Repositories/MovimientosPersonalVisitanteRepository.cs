@@ -128,11 +128,15 @@ namespace ControlNetBackend.Persistence.Repositories
                         IngresoPersonalVisitaSedeDTO.orden = int.Parse(oDataReader["ORDEN"].ToString());
                         IngresoPersonalVisitaSedeDTO.codigo = oDataReader["CODIGO"].ToString();
                         IngresoPersonalVisitaSedeDTO.nombre = oDataReader["NOMBRE"].ToString();
-                        IngresoPersonalVisitaSedeDTO.imagen = (byte[])(oDataReader["imagen"]);
+
+                        if (!(oDataReader["imagen"].ToString() == ""))
+                        {
+                            IngresoPersonalVisitaSedeDTO.imagen = (byte[])(oDataReader["imagen"]);
+                        }
                         IngresoPersonalVisitaSedeDTO.tipo_documento = oDataReader["TIPO_DOCUMENTO"].ToString();
                         IngresoPersonalVisitaSedeDTO.numero_documento = oDataReader["NUMERO_DOCUMENTO"].ToString();
                         IngresoPersonalVisitaSedeDTO.centro_costo = oDataReader["CENTRO_COSTO"].ToString();
-                        IngresoPersonalVisitaSedeDTO.fec_hor_acceso = oDataReader["FEC:HOR_ACCESO"].ToString();
+                        IngresoPersonalVisitaSedeDTO.fec_hor_acceso = oDataReader["FEC_HOR_ACCESO"].ToString();
 
 
                         ListaIngresoPersonalVisitaSedeDTO.Add(IngresoPersonalVisitaSedeDTO);
