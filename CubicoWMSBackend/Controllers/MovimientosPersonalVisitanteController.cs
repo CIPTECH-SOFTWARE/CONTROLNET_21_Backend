@@ -89,8 +89,72 @@ namespace ControlNetBackend.Controllers
 
         }
 
+        [HttpGet]
+        [Route("TOTAL_VISITANTE_EXCESO_TIEMPO_DHAS")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETTotalVisitanteExcesoTiempo_DHAS(int COD_EMPRESA, int COD_SEDE)
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var CantidadVisitantes = await _MovimientosPersonalVisitanteService.Total_Visitante_Tiempo_Exceso_DHAS(COD_EMPRESA, COD_SEDE);
+                    return Ok(CantidadVisitantes);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
 
 
+        [HttpGet]
+        [Route("LISTAR_VISITAS_TIEMPO_EXCESO_DHAS")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETListarVisitanteTiempoEscesoSede_DHAS(int COD_EMPRESA, int COD_SEDE)
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var listaVisitaExcesoTiempoSede = await _MovimientosPersonalVisitanteService.ListarVisitasTiempoExceso_DHAS( COD_EMPRESA, COD_SEDE);
+                    return Ok(listaVisitaExcesoTiempoSede);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("LISTAR_INGRESO_VISITA_GRAFICA_DHAS")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETListarIngresoVisitaGrafica_DHAS(string FECHA_INICIO, string FECHA_FIN, int TIPO, int COD_EMPRESA, int COD_SEDE)
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var listaIngresoVisitaGrafica = await _MovimientosPersonalVisitanteService.ListarVisitasTiempoExceso_DHAS(COD_EMPRESA, COD_SEDE);
+                    return Ok(listaIngresoVisitaGrafica);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
 
 
 

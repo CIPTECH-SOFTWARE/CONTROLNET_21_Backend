@@ -43,6 +43,7 @@ namespace CubicoWMSBackend
             services.AddScoped<IConfiguracionParametrosService, ConfiguracionParametrosService>();
             services.AddScoped<IPersonalService, PersonalService>();
             services.AddScoped<ICitaService, CitaService>();
+            services.AddScoped<IMovimientosPersonalVisitanteService, MovimientosPersonalVisitanteService>();
             //Repository
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<AppDBContext, LoginRepository>();
@@ -52,6 +53,7 @@ namespace CubicoWMSBackend
             services.AddScoped<IConfiguracionParametrosRepository, ConfiguracionParametrosRepository>();
             services.AddScoped<IPersonalRepository, PersonalRepository>();
             services.AddScoped<ICitaRepository, CitaRepository>();
+            services.AddScoped<IMovimientosPersonalVisitanteRepository, MovimientosPersonalVisitanteRepository>();
             //cors
             services.AddCors(options => options.AddPolicy("AllowWebApp",
                     builder=> builder.AllowAnyOrigin()
