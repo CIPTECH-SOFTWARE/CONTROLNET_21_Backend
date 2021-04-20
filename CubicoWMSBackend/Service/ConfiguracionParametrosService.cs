@@ -14,9 +14,15 @@ namespace ControlNetBackend.Service
         {
             _ConfiguracionParametrosRepository = ConfiguracionParametrosRepository;
         }
-        public Task<ConfiguracionParametrosDTO> ParametrosConfiguracion()
+
+        public async  Task<string> ActualizarConfiguracionParametros(ConfiguracionParametrosDTO configuracionParametrosDTO)
         {
-            throw new System.NotImplementedException();
+            return await _ConfiguracionParametrosRepository.ActualizarConfiguracionParametros(configuracionParametrosDTO);
+        }
+
+        public async Task<ConfiguracionParametrosDTO> ParametrosConfiguracion()
+        {
+            return await _ConfiguracionParametrosRepository.ParametrosConfiguracion();
         }
 
         public async Task<ConfiguracionParametros_EmailDTO> ParametrosConfiguracionEmail()

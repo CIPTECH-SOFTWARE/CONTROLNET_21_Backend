@@ -8,7 +8,7 @@ namespace ControlNetBackend.Domain.IService
     {
         Task<ConfiguracionParametrosDTO> ParametrosConfiguracion();
         Task<ConfiguracionParametros_EmailDTO> ParametrosConfiguracionEmail();
-
+        Task<string> ActualizarConfiguracionParametros(ConfiguracionParametrosDTO configuracionParametrosDTO);
 
 
 

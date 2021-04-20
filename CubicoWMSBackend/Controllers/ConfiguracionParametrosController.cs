@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ControlNetBackend.DTO;
 
 namespace ControlNetBackend.Controllers
 {
@@ -44,9 +45,49 @@ namespace ControlNetBackend.Controllers
 
         }
 
+        [HttpGet]
+        [Route("PARAMETROS_CONFIGURACION")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETParametros()
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
+                    var Parametros = await _ConfiguracionParametrosService.ParametrosConfiguracion();
+                    return Ok(Parametros);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
+        }
 
+        [HttpPost]
+        [Route("PARAMETROS_CONFIGURACION_ACTUALIZAR")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> POSTParametrosActualizar(ConfiguracionParametrosDTO ConfiguracionParametrosDTO)
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var mensaje = await _ConfiguracionParametrosService.ActualizarConfiguracionParametros(ConfiguracionParametrosDTO);
+                    return Ok(mensaje);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
 
 
 
