@@ -37,7 +37,7 @@ namespace ControlNetBackend.Persistence.Repositories
         }
         public async Task<string> Total_Visitante_Tiempo_Exceso_DHAS(int COD_EMPRESA, int COD_SEDE)
         {
-            var LISTA = geTotal_Visitante_Tiempo_Exceso_DHAS(COD_EMPRESA, COD_SEDE);
+            var LISTA = getTotal_Visitante_Tiempo_Exceso_DHAS(COD_EMPRESA, COD_SEDE);
             return LISTA;
         }
         public async Task<List<IngresoVisitaTiempoExcesoSedeDTO>> ListarVisitasTiempoExceso_DHAS(int COD_EMPRESA, int COD_SEDE)
@@ -206,7 +206,7 @@ namespace ControlNetBackend.Persistence.Repositories
 
 
         }
-        public string geTotal_Visitante_Tiempo_Exceso_DHAS(int COD_EMPRESA, int COD_SEDE)
+        public string getTotal_Visitante_Tiempo_Exceso_DHAS(int COD_EMPRESA, int COD_SEDE)
         {
             string total = string.Empty;
             //ListaUsuarioEmpresaDTO = null;
@@ -227,7 +227,7 @@ namespace ControlNetBackend.Persistence.Repositories
                     SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
                     while (oDataReader.Read())
                     {
-                        total = oDataReader["contador"].ToString();
+                        total = oDataReader["TOTAL_VIS_TIEM_EXCESO"].ToString().Trim();
                     }
                 }
             }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ControlNetBackend.Domain.IService;
 using ControlNetBackend.Domain.IRepositories;
 using ControlNetBackend.DTO;
+using ControlNetBackend.Domain.Models;
 
 namespace ControlNetBackend.Service
 {
@@ -30,6 +31,11 @@ namespace ControlNetBackend.Service
         public async Task<List<UsuarioEmpresaDTO>> ListarUsuarioEmpresa(int ID_USER)
         {
             return await _EmpresaRepository.ListarUsuarioEmpresa(ID_USER);
+        }
+
+        public async Task<MensajeResultado> MantenimientoEmpresa(EmpresaMantenimientoDTO EMPRESA)
+        {
+            return await _EmpresaRepository.MantenimientoEmpresa(EMPRESA);
         }
     }
 }

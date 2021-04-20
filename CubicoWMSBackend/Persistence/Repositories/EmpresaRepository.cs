@@ -8,6 +8,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
+using ControlNetBackend.Domain.Models;
 
 namespace ControlNetBackend.Persistence.Repositories
 {
@@ -36,6 +37,17 @@ namespace ControlNetBackend.Persistence.Repositories
         {
             var LISTA = getListarUsuarioEmpresa(ID_USER);
             return LISTA;
+        }
+
+        public async Task<MensajeResultado> MantenimientoEmpresa(EmpresaMantenimientoDTO empresa)
+        {
+
+            var LISTA = getMantenimientoEmpresa(empresa);
+            return LISTA;
+
+
+
+
         }
         public List<UsuarioEmpresaDTO> getListarUsuarioEmpresa(int ID_USER)
         {
@@ -166,5 +178,59 @@ namespace ControlNetBackend.Persistence.Repositories
             return ListaEmpresaDTO;
         }
 
+        public MensajeResultado getMantenimientoEmpresa(EmpresaMantenimientoDTO empresa)
+        {
+            MensajeResultado MensajeResultado = new MensajeResultado();
+            //ListaUsuarioEmpresaDTO = null;
+            string cnxString = _appDBContext.Database.GetConnectionString();
+            SqlConnection cnx = new SqlConnection(cnxString);
+            try
+            {
+                cnx.Open();
+                using (SqlCommand Sqlcmd = new SqlCommand())
+                {
+                    Sqlcmd.Connection = cnx;
+                    Sqlcmd.CommandType = CommandType.StoredProcedure;
+                    Sqlcmd.CommandText = "SP_TX_Grabar_Empresa_21";
+                    Sqlcmd.Parameters.Clear();
+                    Sqlcmd.Parameters.Add("@Accion", SqlDbType.Int).Value = empresa.Tipo_Operacion;
+                    Sqlcmd.Parameters.Add("@Cod_Empresa", SqlDbType.Int).Value = empresa.cod_empresa;
+                    Sqlcmd.Parameters.Add("@Des_Empresa", SqlDbType.Int).Value = empresa.des_empresa;
+                    Sqlcmd.Parameters.Add("@Ruc", SqlDbType.Int).Value = empresa.ruc;
+                    Sqlcmd.Parameters.Add("@Usuario", SqlDbType.Int).Value = empresa.id_user;
+                    Sqlcmd.Parameters.Add("@Flag_Activo", SqlDbType.Int).Value = empresa.flag_activo;
+
+
+                    SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
+                    while (oDataReader.Read())
+                    {
+                        MensajeResultado  EmpresaDTO = new MensajeResultado();
+                        MensajeResultado.mensaje = oDataReader["mensaje"].ToString();
+                        MensajeResultado.resultado = int.Parse(oDataReader["resultado"].ToString());
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (cnx.State == System.Data.ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
+
+
+            return MensajeResultado;
+        }
+
+
+
+
+
     }
-}
+    }
+

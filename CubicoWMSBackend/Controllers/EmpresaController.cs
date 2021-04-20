@@ -87,6 +87,24 @@ namespace ControlNetBackend.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("MANTENIMIENTO_EMPRESA")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> POST_MantenimientoEmpresa(EmpresaMantenimientoDTO empresa)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                var mensaje = await _EmpresaService.MantenimientoEmpresa(empresa);
+                return Ok(mensaje);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }
