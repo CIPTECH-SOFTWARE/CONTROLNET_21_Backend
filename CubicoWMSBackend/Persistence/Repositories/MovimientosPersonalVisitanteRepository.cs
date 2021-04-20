@@ -183,7 +183,7 @@ namespace ControlNetBackend.Persistence.Repositories
                     SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
                     while (oDataReader.Read())
                     {
-                        total= oDataReader["contador"].ToString();
+                        total= oDataReader["contador"].ToString().Trim();
                     }
                 }
             }
