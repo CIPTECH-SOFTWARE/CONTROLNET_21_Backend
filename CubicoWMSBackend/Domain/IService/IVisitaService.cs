@@ -5,7 +5,7 @@ namespace ControlNetBackend.Domain.IService
 {
   public  interface IVisitaService
     {
-        Task<List<VisitaDiaDTO>> ListarVisitaDia(string COD_PERSONAL, string FECHA);
+        Task<List<VisitaDiaDTO>> ListarVisitasDia(string COD_PERSONAL, string FECHA);
 
     }
 }

@@ -6,7 +6,7 @@ namespace ControlNetBackend.Domain.IRepositories
 {
     public interface IVisitaRepository
     {
-        Task<List<VisitaDiaDTO>> ListarVisitaDia(string COD_PERSONAL,string FECHA);
+        Task<List<VisitaDiaDTO>> ListarVisitasDia(string COD_PERSONAL,string FECHA);
 
 
 

@@ -12,9 +12,9 @@ namespace ControlNetBackend.Service
     {
 
         private readonly ICitaRepository _CitaRepository;
-        public CitaService(ICitaRepository SedeRepository)
+        public CitaService(ICitaRepository CitaRepository)
         {
-            _CitaRepository = SedeRepository;
+            _CitaRepository = CitaRepository;
         }
 
 
