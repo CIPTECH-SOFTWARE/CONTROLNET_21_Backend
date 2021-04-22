@@ -42,8 +42,8 @@ namespace ControlNetBackend.Persistence.Repositories
         public async Task<MensajeResultado> MantenimientoEmpresa(EmpresaMantenimientoDTO empresa)
         {
 
-            var LISTA = getMantenimientoEmpresa(empresa);
-            return LISTA;
+            var mensaje = getMantenimientoEmpresa(empresa);
+            return mensaje;
 
 
 
@@ -69,9 +69,9 @@ namespace ControlNetBackend.Persistence.Repositories
                     while (oDataReader.Read())
                     {
                         UsuarioEmpresaDTO usuarioEmpresaDTO = new UsuarioEmpresaDTO();
-                        usuarioEmpresaDTO.id_user = int.Parse(oDataReader[0].ToString());
-                        usuarioEmpresaDTO.cod_empresa = int.Parse(oDataReader[1].ToString());
-                        usuarioEmpresaDTO.des_empresa = oDataReader[2].ToString();
+                        usuarioEmpresaDTO.id_user = int.Parse(oDataReader["id_user"].ToString());
+                        usuarioEmpresaDTO.cod_empresa = int.Parse(oDataReader["cod_empresa"].ToString());
+                        usuarioEmpresaDTO.des_empresa = oDataReader["des_empresa"].ToString();
                         ListaUsuarioEmpresaDTO.Add(usuarioEmpresaDTO);
                     }
                 }
@@ -195,21 +195,25 @@ namespace ControlNetBackend.Persistence.Repositories
                     Sqlcmd.Parameters.Clear();
                     Sqlcmd.Parameters.Add("@Accion", SqlDbType.Int).Value = empresa.Tipo_Operacion;
                     Sqlcmd.Parameters.Add("@Cod_Empresa", SqlDbType.Int).Value = empresa.cod_empresa;
-                    Sqlcmd.Parameters.Add("@Des_Empresa", SqlDbType.Int).Value = empresa.des_empresa;
-                    Sqlcmd.Parameters.Add("@Ruc", SqlDbType.Int).Value = empresa.ruc;
+                    Sqlcmd.Parameters.Add("@Des_Empresa", SqlDbType.VarChar,100).Value = empresa.des_empresa;
+                    Sqlcmd.Parameters.Add("@Ruc", SqlDbType.VarChar,20).Value = empresa.ruc;
                     Sqlcmd.Parameters.Add("@Usuario", SqlDbType.Int).Value = empresa.id_user;
-                    Sqlcmd.Parameters.Add("@Flag_Activo", SqlDbType.Int).Value = empresa.flag_activo;
+                    Sqlcmd.Parameters.Add("@Flag_Activo", SqlDbType.Bit).Value = empresa.flag_activo;
 
 
                     SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
                     while (oDataReader.Read())
                     {
-                        MensajeResultado  EmpresaDTO = new MensajeResultado();
+                      
                         MensajeResultado.mensaje = oDataReader["mensaje"].ToString();
                         MensajeResultado.resultado = int.Parse(oDataReader["resultado"].ToString());
 
                     }
                 }
+            }
+            catch (SqlException sqlex)
+            {
+
             }
             catch (Exception ex)
             {

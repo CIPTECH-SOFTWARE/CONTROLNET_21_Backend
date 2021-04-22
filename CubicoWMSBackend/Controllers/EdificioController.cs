@@ -13,26 +13,26 @@ namespace ControlNetBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class EdificioController : ControllerBase
     {
-        private readonly IEmpresaService _EmpresaService;
+        private readonly IEdificioService _EdificioService;
 
-        public EmpresaController(IEmpresaService EmpresaService)
+        public EdificioController(IEdificioService EdificioService)
         {
-            _EmpresaService = EmpresaService;
+            _EdificioService = EdificioService;
         }
 
         [HttpGet]
-        [Route("LISTA_EMPRESA")]
+        [Route("LISTA_EDIFICIO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult>    ListarEmpresaGET()
+        public async Task<IActionResult> ListarEdificioGET()
         {
             try
             {
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
-                var listaEmpresa = await _EmpresaService.ListarEmpresa();
+                var listaEmpresa = await _EdificioService.ListarEdificio();
                 return Ok(listaEmpresa);
             }
             catch (Exception ex)
@@ -42,36 +42,17 @@ namespace ControlNetBackend.Controllers
         }
 
         [HttpGet]
-        [Route("LISTA_EMPRESA_ACTIVO")]
+        [Route("LISTA_EDIFICIO_SEDE")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> ListarEmpresaActivaGET(int COD_EMPRESA)
+        public async Task<IActionResult> ListarEdificio_x_SedeGET(int COD_SEDE)
         {
             try
             {
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
-                var listaEmpresa = await _EmpresaService.ListarEmpresa_activa(COD_EMPRESA);
+                var listaEmpresa = await _EdificioService.ListarEdificio_X_Sede(COD_SEDE);
                 return Ok(listaEmpresa);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet]
-        [Route("LISTA_USUARIO_EMPRESA")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> GET(int ID_USER)
-        {
-            try
-            {
-                var identity = HttpContext.User.Identity as ClaimsIdentity;
-                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
-
-                var listaUsuarioEmpresa = await _EmpresaService.ListarUsuarioEmpresa(ID_USER);
-                return Ok(listaUsuarioEmpresa);
             }
             catch (Exception ex)
             {
@@ -80,16 +61,16 @@ namespace ControlNetBackend.Controllers
         }
 
         [HttpPost]
-        [Route("MANTENIMIENTO_EMPRESA")]
+        [Route("MANTENIMIENTO_EDIFICIO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> POST_MantenimientoEmpresa([FromBody]EmpresaMantenimientoDTO empresa)
+        public async Task<IActionResult> POST_MantenimientoEdificio([FromBody] EdificioMantenimientoDTO EDIFCIO)
         {
             try
             {
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
-                var mensaje = await _EmpresaService.MantenimientoEmpresa(empresa);
+                var mensaje = await _EdificioService.MantenimientoEdificio(EDIFCIO);
                 return Ok(mensaje);
             }
             catch (Exception ex)
@@ -97,6 +78,5 @@ namespace ControlNetBackend.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
     }
 }

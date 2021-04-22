@@ -17,7 +17,6 @@ namespace ControlNetBackend.Service
             _CitaRepository = CitaRepository;
         }
 
-
         public async Task<List<CitaProgramadaDiaDTO>> ListarCitasProgramadasDia(string COD_PERSONAL, string FECHA)
         {
             return await _CitaRepository.ListarCitasProgramadasDia(COD_PERSONAL,FECHA );

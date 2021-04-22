@@ -13,83 +13,62 @@ namespace ControlNetBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class CentroCostoController : ControllerBase
     {
-        private readonly IEmpresaService _EmpresaService;
+        private readonly ICentroCostoService _CentroCostoService;
 
-        public EmpresaController(IEmpresaService EmpresaService)
+        public CentroCostoController(ICentroCostoService CentroCostoService)
         {
-            _EmpresaService = EmpresaService;
+            _CentroCostoService = CentroCostoService;
         }
 
         [HttpGet]
-        [Route("LISTA_EMPRESA")]
+        [Route("LISTA_CENTROCOSTO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult>    ListarEmpresaGET()
+        public async Task<IActionResult> ListarEmpresaGET()
         {
             try
             {
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
-                var listaEmpresa = await _EmpresaService.ListarEmpresa();
-                return Ok(listaEmpresa);
+                var listaCentroCosto = await _CentroCostoService.ListarCentroCosto();
+                return Ok(listaCentroCosto);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-
         [HttpGet]
-        [Route("LISTA_EMPRESA_ACTIVO")]
+        [Route("LISTA_CENTROCOSTO_EMPRESA")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> ListarEmpresaActivaGET(int COD_EMPRESA)
+        public async Task<IActionResult> GETListaCentroCosto_Empresa(int COD_EMPRESA)
         {
             try
             {
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
-                var listaEmpresa = await _EmpresaService.ListarEmpresa_activa(COD_EMPRESA);
-                return Ok(listaEmpresa);
+                var listaCentroCostoEmpresa = await _CentroCostoService.ListarCentroCosto_x_Empresa(COD_EMPRESA);
+                return Ok(listaCentroCostoEmpresa);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpGet]
-        [Route("LISTA_USUARIO_EMPRESA")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> GET(int ID_USER)
-        {
-            try
-            {
-                var identity = HttpContext.User.Identity as ClaimsIdentity;
-                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
-
-                var listaUsuarioEmpresa = await _EmpresaService.ListarUsuarioEmpresa(ID_USER);
-                return Ok(listaUsuarioEmpresa);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpPost]
-        [Route("MANTENIMIENTO_EMPRESA")]
+        [Route("MANTENIMIENTO_CENTROCOSTO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> POST_MantenimientoEmpresa([FromBody]EmpresaMantenimientoDTO empresa)
+        public async Task<IActionResult> POST_MantenimientoEmpresa([FromBody] CentroCostoMantenimientoDTO CENTRO_COSTO)
         {
             try
             {
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
                 int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
-                var mensaje = await _EmpresaService.MantenimientoEmpresa(empresa);
+                var mensaje = await _CentroCostoService.MantenimientoCentroCosto(CENTRO_COSTO);
                 return Ok(mensaje);
             }
             catch (Exception ex)
@@ -97,6 +76,10 @@ namespace ControlNetBackend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+
+
 
     }
 }

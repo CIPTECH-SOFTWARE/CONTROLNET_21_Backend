@@ -1,4 +1,6 @@
 ﻿using ControlNetBackend.Domain.IService;
+using ControlNetBackend.Domain.Models;
+using ControlNetBackend.DTO;
 using CubicoWMSBackend.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -18,13 +20,13 @@ namespace ControlNetBackend.Controllers
 
         public SedeController(ISedeService SedeService)
         {
-           _SedeService = SedeService;
+            _SedeService = SedeService;
         }
 
         [HttpGet]
-        [Route("LISTA_SEDE")]
+        [Route("LISTA_SEDE_EMPRESA")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> GETListaSede(int COD_EMPRESA)
+        public async Task<IActionResult> GETListaSedeEmpresa(int COD_EMPRESA)
         {
             try
             {
@@ -56,14 +58,14 @@ namespace ControlNetBackend.Controllers
                     int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
                     var listaUsuarioSede = await _SedeService.ListarUsuarioSede(ID_USER);
-                return Ok(listaUsuarioSede);
+                    return Ok(listaUsuarioSede);
                 }
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            
+
         }
 
         [HttpGet]
@@ -88,7 +90,69 @@ namespace ControlNetBackend.Controllers
 
         }
 
+        [HttpGet]
+        [Route("LISTA_SEDE")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETListaSede()
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
 
-      
+                    var listaSede = await _SedeService.ListarSede();
+                    return Ok(listaSede);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+
+
+        [HttpGet]
+        [Route("LISTA_SEDE_CONSULTA")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETListaSedeConsulta(int COD_SEDE)
+        {
+            try
+            {
+                {
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var listaSede = await _SedeService.ListarSedeConsulta(COD_SEDE);
+                    return Ok(listaSede);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpPost]
+        [Route("MANTENIMIENTO_SEDE")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> POST_MantenimientoSede([FromBody] SedeMantenimientoDTO SEDE)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                var mensaje = await _SedeService.MantenimientoSede(SEDE);
+                return Ok(mensaje);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
