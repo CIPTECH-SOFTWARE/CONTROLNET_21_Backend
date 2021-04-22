@@ -68,9 +68,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "EdificioRepository/getListarEdificio(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "EdificioRepository/getListarEdificio() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -114,9 +122,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "EdificioRepository/getListarEdificio_X_Sede(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "EdificioRepository/getListarEdificio_X_Sede() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -164,13 +180,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (SqlException sqlex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "EdificioRepository/getMantenimientoEdificio(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
             }
             catch (Exception ex)
             {
-
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "EdificioRepository/getMantenimientoEdificio() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

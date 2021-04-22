@@ -76,9 +76,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "EmpresaRepository/getListarUsuarioEmpresa(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "EmpresaRepository/getListarUsuarioEmpresa() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -119,9 +127,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "EmpresaRepository/getListarEmpresa(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "EmpresaRepository/getListarEmpresa() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -134,7 +150,6 @@ namespace ControlNetBackend.Persistence.Repositories
 
             return ListaEmpresaDTO;
         }
-
         public List<EmpresaDTO> getListarEmpresa_activa(int COD_EMPRESA)
         {
             List<EmpresaDTO> ListaEmpresaDTO = new List<EmpresaDTO>();
@@ -162,9 +177,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "EmpresaRepository/getListarEmpresa_activa(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "EmpresaRepository/getListarEmpresa_activa() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -177,7 +200,6 @@ namespace ControlNetBackend.Persistence.Repositories
 
             return ListaEmpresaDTO;
         }
-
         public MensajeResultado getMantenimientoEmpresa(EmpresaMantenimientoDTO empresa)
         {
             MensajeResultado MensajeResultado = new MensajeResultado();
@@ -211,13 +233,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (SqlException sqlex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "EmpresaRepository/getMantenimientoEmpresa(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
             }
             catch (Exception ex)
             {
-
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "EmpresaRepository/getMantenimientoEmpresa() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

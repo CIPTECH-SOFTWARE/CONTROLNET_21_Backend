@@ -92,23 +92,17 @@ namespace CubicoWMSBackend.Persistence.Repositories
                     }
                  }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
-                //loginDTO.usuario = usuario.NombreUsuario;
-                //loginDTO.password = "";
-                //loginDTO.ID_USER = 0;
-                //loginDTO.ID_PERFIL = 0;
-                //loginDTO.COD_PERSONAL = "";
-                //loginDTO.NOM_USUARIO = "";
-                //loginDTO.COD_CENTRO_COSTO = 0;
-                //loginDTO.DES_CENTRO_COSTO = "";
-                //loginDTO.NOM_COMPLETO_PERSONAL = "";
-                //loginDTO.IND_ACTIVO = 0;
-                //loginDTO.ESTADO_PERFIL = 0;
-                //loginDTO.RESPUESTA = -1;
-                //loginDTO.MENSAJE = ex.Message;
-
+                eErrorLog mensajeLogError = new eErrorLog(
+                sex.Message, "LoginRepository/getUser(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "LoginRepository/getUser() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

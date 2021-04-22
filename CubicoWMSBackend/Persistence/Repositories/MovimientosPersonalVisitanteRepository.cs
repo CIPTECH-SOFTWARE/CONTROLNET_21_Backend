@@ -1,4 +1,5 @@
 ﻿using ControlNetBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.Models;
 using ControlNetBackend.DTO;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
@@ -87,9 +88,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "MovimientosPersonalVisitanteRepository/getListarIngresoSede_DHAS(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "MovimientosPersonalVisitanteRepository/getListarIngresoSede_DHAS() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -144,9 +153,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "MovimientosPersonalVisitanteRepository/getListarIngresoSede_Top_DHAS(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "MovimientosPersonalVisitanteRepository/getListarIngresoSede_Top_DHAS() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -187,9 +204,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "MovimientosPersonalVisitanteRepository/geTotalCantidades_Movimiento_DHAS(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "MovimientosPersonalVisitanteRepository/geTotalCantidades_Movimiento_DHAS() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -231,9 +256,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "MovimientosPersonalVisitanteRepository/getTotal_Visitante_Tiempo_Exceso_DHAS(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "MovimientosPersonalVisitanteRepository/getTotal_Visitante_Tiempo_Exceso_DHAS() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -283,9 +316,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "MovimientosPersonalVisitanteRepository/getListarVisitasTiempoExceso_DHAS(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "MovimientosPersonalVisitanteRepository/getListarVisitasTiempoExceso_DHAS() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -331,9 +372,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "MovimientosPersonalVisitanteRepository/getIngresoVisitaGrafica_DHAS(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "MovimientosPersonalVisitanteRepository/getIngresoVisitaGrafica_DHAS() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

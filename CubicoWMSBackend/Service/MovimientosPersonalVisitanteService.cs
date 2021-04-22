@@ -14,32 +14,26 @@ namespace ControlNetBackend.Service
         {
             _MovimientosPersonalVisitanteRepository = MovimientosPersonalVisitanteRepository;
         }
-
         public async Task<List<IngresoVisitaPersonalGraficaDTO>> IngresoVisitaGrafica_DHAS(string FECHA_INICIO, string FECHA_FIN, int TIPO, int COD_EMPRESA, int COD_SEDE)
         {
             return await _MovimientosPersonalVisitanteRepository.IngresoVisitaGrafica_DHAS(FECHA_INICIO, FECHA_FIN, TIPO, COD_EMPRESA, COD_SEDE);
         }
-
         public async Task<List<IngresoPersonalVisitaSedeDTO>> ListarIngresoSede_DHAS(int TIPO, int COD_EMPRESA, int COD_SEDE)
         {
             return await _MovimientosPersonalVisitanteRepository.ListarIngresoSede_DHAS(TIPO,COD_EMPRESA,COD_SEDE);
         }
-
         public async Task<List<IngresoPersonalVisitaSedeDTO>> ListarIngresoSede_Top_DHAS(int TIPO, int COD_EMPRESA, int COD_SEDE)
         {
             return await _MovimientosPersonalVisitanteRepository.ListarIngresoSede_Top_DHAS(TIPO, COD_EMPRESA, COD_SEDE);
         }
-
         public async Task<List<IngresoVisitaTiempoExcesoSedeDTO>> ListarVisitasTiempoExceso_DHAS(int COD_EMPRESA, int COD_SEDE)
         {
             return await _MovimientosPersonalVisitanteRepository.ListarVisitasTiempoExceso_DHAS(COD_EMPRESA, COD_SEDE);
         }
-
         public async Task<string> TotalCantidades_Movimiento_DHAS(string FECHA_INICIO, string FECHA_FIN, int TIPO, int COD_EMPRESA, int COD_SEDE)
         {
             return await _MovimientosPersonalVisitanteRepository.TotalCantidades_Movimiento_DHAS(FECHA_INICIO,FECHA_FIN,TIPO, COD_EMPRESA, COD_SEDE);
         }
-
         public async Task<string> Total_Visitante_Tiempo_Exceso_DHAS(int COD_EMPRESA, int COD_SEDE)
         {
             return await _MovimientosPersonalVisitanteRepository.Total_Visitante_Tiempo_Exceso_DHAS(COD_EMPRESA, COD_SEDE);

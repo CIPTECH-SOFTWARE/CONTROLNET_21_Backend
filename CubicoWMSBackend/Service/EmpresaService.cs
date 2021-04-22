@@ -17,7 +17,6 @@ namespace ControlNetBackend.Service
         {
             _EmpresaRepository = EmpresaRepository;
         }
-       
         public async Task<List<EmpresaDTO>> ListarEmpresa()
         {
             return await _EmpresaRepository.ListarEmpresa();

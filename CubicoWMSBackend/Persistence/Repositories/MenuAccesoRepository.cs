@@ -56,9 +56,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "MenuAccesoRepository/getListarMenuAccesoPerfil(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "MenuAccesoRepository/getListarMenuAccesoPerfil() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

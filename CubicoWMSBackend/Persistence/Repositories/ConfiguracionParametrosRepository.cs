@@ -1,4 +1,5 @@
 ﻿using ControlNetBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.Models;
 using ControlNetBackend.DTO;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
@@ -69,9 +70,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
+            catch (SqlException sex)
+            {
+
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "ConfiguracionParametrosRepository/getParametrosConfiguracion_Email(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
             catch (Exception ex)
             {
-                ConfiguracionParametros_EmailDTO = null;
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CitaRepository/getParametrosConfiguracion_Email() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -137,9 +146,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "ConfiguracionParametrosRepository/getActualizarConfiguracionParametros(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CitaRepository/getActualizarConfiguracionParametros() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -156,9 +173,6 @@ namespace ControlNetBackend.Persistence.Repositories
 
 
         }
-
-
-
 
         public ConfiguracionParametrosDTO getParametrosConfiguracion()
         {
@@ -205,9 +219,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
+            catch (SqlException sex)
+            {
+
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "ConfiguracionParametrosRepository/getParametrosConfiguracion(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
             catch (Exception ex)
             {
-                ConfiguracionParametrosDTO = null;
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CitaRepository/getParametrosConfiguracion() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

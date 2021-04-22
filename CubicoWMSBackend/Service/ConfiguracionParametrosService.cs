@@ -14,17 +14,14 @@ namespace ControlNetBackend.Service
         {
             _ConfiguracionParametrosRepository = ConfiguracionParametrosRepository;
         }
-
         public async  Task<string> ActualizarConfiguracionParametros(ConfiguracionParametrosDTO configuracionParametrosDTO)
         {
             return await _ConfiguracionParametrosRepository.ActualizarConfiguracionParametros(configuracionParametrosDTO);
         }
-
         public async Task<ConfiguracionParametrosDTO> ParametrosConfiguracion()
         {
             return await _ConfiguracionParametrosRepository.ParametrosConfiguracion();
         }
-
         public async Task<ConfiguracionParametros_EmailDTO> ParametrosConfiguracionEmail()
         {
             return await _ConfiguracionParametrosRepository.ParametrosConfiguracionEmail();

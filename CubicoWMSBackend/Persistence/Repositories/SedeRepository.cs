@@ -87,9 +87,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "SedeRepository/getListarSede_x_Empresa(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "PersonalRepository/getListarSede_x_Empresa() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -132,9 +140,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "SedeRepository/getListarSede_x_Empresa(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "PersonalRepository/getListarSede_x_Empresa() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -178,9 +194,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "SedeRepository/getListarUsuarioSede_activo(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "PersonalRepository/getListarUsuarioSede_activo() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -223,9 +247,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "SedeRepository/getListarSede(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "PersonalRepository/getListarSede() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -266,9 +298,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "SedeRepository/getListarSedeConsulta(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "PersonalRepository/getListarSedeConsulta() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -315,13 +355,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (SqlException sqlex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "SedeRepository/getMantenimientoSede(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
             }
             catch (Exception ex)
             {
-
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "PersonalRepository/getMantenimientoSede() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

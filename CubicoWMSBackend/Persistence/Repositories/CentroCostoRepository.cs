@@ -1,4 +1,5 @@
 ﻿using ControlNetBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.Models;
 using ControlNetBackend.DTO;
 using CubicoWMSBackend.Persistence.Context;
 using System;
@@ -21,6 +22,8 @@ namespace ControlNetBackend.Persistence.Repositories
             _appDBContext = appDBContext;
         }
         
+
+
         public async Task<List<CentroCostoDTO>> ListarCentroCosto()
         {
             var LISTA = getListarCentroCosto();
@@ -37,7 +40,9 @@ namespace ControlNetBackend.Persistence.Repositories
             var mensaje = getMantenimientoCentroCosto(CENTRO_COSTO);
             return mensaje;
         }
-       
+     
+        
+
         public List<CentroCostoDTO> getListarCentroCosto()
         {
             List<CentroCostoDTO> ListaCentroCostoDTO = new List<CentroCostoDTO>();
@@ -67,9 +72,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "CentroCostoRepository/getListarCentroCosto(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CentroCostoRepository/getListarCentroCosto() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -112,9 +125,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "CentroCostoRepository/getListarCentroCosto_x_Empresa(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CentroCostoRepository/getListarCentroCosto_x_Empresa() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -161,13 +182,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (SqlException sqlex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "CentroCostoRepository/getMantenimientoCentroCosto(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
             }
             catch (Exception ex)
             {
-
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CentroCostoRepository/getMantenimientoCentroCosto() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

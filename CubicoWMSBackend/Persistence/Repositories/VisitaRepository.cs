@@ -1,4 +1,5 @@
 ﻿using ControlNetBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.Models;
 using ControlNetBackend.DTO;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
@@ -66,9 +67,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "VisitaRepository/getListarVisitasDia(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "VisitaRepository/getListarVisitasDia() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

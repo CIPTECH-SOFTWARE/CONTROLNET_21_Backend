@@ -1,4 +1,5 @@
 ﻿using ControlNetBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.Models;
 using ControlNetBackend.DTO;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
@@ -15,16 +16,20 @@ namespace ControlNetBackend.Persistence.Repositories
     {
 
         private readonly AppDbContext _appDBContext;
+        
         public CitaRepository(AppDbContext context)
         {
             _appDBContext = context;
         }
+        
+        
         public async Task<List<CitaProgramadaDiaDTO>> ListarCitasProgramadasDia(string COD_PERSONAL, string FECHA)
         {
             var LISTA = getListarCitasProgramadasDia(COD_PERSONAL, FECHA);
             return LISTA;
         }
-               
+       
+        
         private List<CitaProgramadaDiaDTO> getListarCitasProgramadasDia(string COD_PERSONAL, string FECHA)
         {
 
@@ -74,9 +79,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "CitaRepository/getListarCitasProgramadasDia(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CitaRepository/getListarCitasProgramadasDia() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

@@ -1,4 +1,5 @@
 ﻿using ControlNetBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.Models;
 using ControlNetBackend.DTO;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
@@ -55,9 +56,17 @@ namespace ControlNetBackend.Persistence.Repositories
                     }
                 }
             }
+            catch (SqlException sex)
+            {
+
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "PersonalRepository/getPersonalLogin(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
             catch (Exception ex)
             {
-                PersonalLoginDTO = null;
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "PersonalRepository/getPersonalLogin() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {

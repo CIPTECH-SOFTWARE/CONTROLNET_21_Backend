@@ -94,9 +94,17 @@ namespace CubicoWMSBackend.Persistence.Repositories
                     }
                 }
             }
+            catch (SqlException sex)
+            {
+
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "UsuarioRepository/getRecuperarPassword(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
             catch (Exception ex)
             {
-                               
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "UsuarioRepository/getRecuperarPassword() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -138,9 +146,17 @@ namespace CubicoWMSBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "UsuarioRepository/getValida_NuevoUsuario(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "UsuarioRepository/getValida_NuevoUsuario() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
@@ -188,9 +204,17 @@ namespace CubicoWMSBackend.Persistence.Repositories
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
 
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "UsuarioRepository/getGrabar_Usuario_Login(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "UsuarioRepository/getGrabar_Usuario_Login() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
             }
             finally
             {
