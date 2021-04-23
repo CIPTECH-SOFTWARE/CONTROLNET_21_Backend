@@ -8,19 +8,18 @@ using ControlNetBackend.DTO;
 
 namespace ControlNetBackend.Service
 {
-    public class VisitaService
+    public class VisitaService:IVisitaService
     {
         private readonly IVisitaRepository _VisitaRepository;
         public VisitaService(IVisitaRepository VisitaRepository)
         {
             _VisitaRepository = VisitaRepository;
         }
-        public async Task<List<VisitaDiaDTO>> ListarCitasProgramadasDia(string COD_PERSONAL, string FECHA)
+     
+
+        public async Task<List<VisitaDiaDTO>> ListarVisitasDia(string COD_PERSONAL, string FECHA)
         {
-            return await _VisitaRepository.ListarVisitasDia(COD_PERSONAL, FECHA);
+           return await _VisitaRepository.ListarVisitasDia(COD_PERSONAL, FECHA);
         }
-
-
-
     }
 }

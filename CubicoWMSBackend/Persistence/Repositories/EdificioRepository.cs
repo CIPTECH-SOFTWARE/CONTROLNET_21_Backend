@@ -26,20 +26,19 @@ namespace ControlNetBackend.Persistence.Repositories
             var LISTA = getListarEdificio();
             return LISTA;
         }
-
         public async Task<List<EdificioDTO>> ListarEdificio_X_Sede(int COD_SEDE)
         {
             var LISTA = getListarEdificio_X_Sede(COD_SEDE);
             return LISTA;
         }
-
         public async Task<MensajeResultado> MantenimientoEdificio(EdificioMantenimientoDTO EDIFICIO)
         {
             var mensaje = getMantenimientoEdificio(EDIFICIO);
             return mensaje;
         }
-
-
+     
+        
+        
         public List<EdificioDTO> getListarEdificio()
         {
             List<EdificioDTO> ListaEdificioDTO = new List<EdificioDTO>();
@@ -91,7 +90,6 @@ namespace ControlNetBackend.Persistence.Repositories
 
             return ListaEdificioDTO;
         }
-
         public List<EdificioDTO> getListarEdificio_X_Sede(int cod_sede)
         {
             List<EdificioDTO> ListaEdificioDTO = new List<EdificioDTO>();
@@ -145,7 +143,6 @@ namespace ControlNetBackend.Persistence.Repositories
 
             return ListaEdificioDTO;
         }
-
         public MensajeResultado getMantenimientoEdificio(EdificioMantenimientoDTO EDIFICIO)
         {
             MensajeResultado MensajeResultado = new MensajeResultado();
