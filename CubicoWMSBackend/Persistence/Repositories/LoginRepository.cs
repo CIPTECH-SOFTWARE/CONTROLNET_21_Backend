@@ -1,5 +1,5 @@
 ﻿using ControlNetBackend.DTO;
-using CubicoWMSBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.IRepositories;
 using ControlNetBackend.Domain.Models;
 using CubicoWMSBackend.Persistence.Context;
 using Microsoft.Data.SqlClient;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CubicoWMSBackend.Persistence.Repositories
 {
-    public class LoginRepository:AppDBContext
+    public class LoginRepository:ILoginRepository
     {
         private readonly AppDbContext _appDBContext;
        // private IConfiguration configuration;
@@ -51,7 +51,7 @@ namespace CubicoWMSBackend.Persistence.Repositories
                 {
                     Sqlcmd.Connection = cnx;
                     Sqlcmd.CommandType = CommandType.StoredProcedure;
-                    Sqlcmd.CommandText = "SP_S_Validar_Usuario_AD_CN";
+                    Sqlcmd.CommandText = "SP_S_Validar_Usuario_AD_CN_21";
                     Sqlcmd.Parameters.Clear();
                     Sqlcmd.Parameters.Add("@Cod_Usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                     Sqlcmd.Parameters.Add("@Des_Password", SqlDbType.VarChar, 50).Value = usuario.Password;

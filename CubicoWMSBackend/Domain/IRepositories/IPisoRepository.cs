@@ -14,7 +14,5 @@ namespace ControlNetBackend.Domain.IRepositories
         Task<MensajeResultado> MantenimientoPiso(PisoMantenimientoDTO PISO);
 
 
-
-
     }
 }

@@ -1,19 +1,19 @@
 ﻿using ControlNetBackend.DTO;
-using CubicoWMSBackend.Domain.IRepositories;
+using ControlNetBackend.Domain.IRepositories;
 using CubicoWMSBackend.Domain.IService;
 using ControlNetBackend.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-namespace CubicoWMSBackend.Service
+namespace ControlNetBackend.Service
 {
     public class LoginService:ILoginService
     {
-        private readonly AppDBContext _loginRepository;
+        private readonly ILoginRepository _loginRepository;
        
 
-        public LoginService(AppDBContext loginRepository)
+        public LoginService(ILoginRepository loginRepository)
         {
             _loginRepository = loginRepository;
         }

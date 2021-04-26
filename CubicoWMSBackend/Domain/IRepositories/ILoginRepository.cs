@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CubicoWMSBackend.Domain.IRepositories
+namespace ControlNetBackend.Domain.IRepositories
 {
-    public interface AppDBContext
+    public interface ILoginRepository
     {
         Task<LoginDTO> ValidateUser(Usuario usuario);
        

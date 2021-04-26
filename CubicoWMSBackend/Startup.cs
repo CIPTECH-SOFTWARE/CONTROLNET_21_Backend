@@ -48,10 +48,10 @@ namespace CubicoWMSBackend
             services.AddScoped<IEdificioService, EdificioService>();
             services.AddScoped<IPisoService, PisoService>();
             services.AddScoped<IVisitaService, VisitaService>();
-
+            services.AddScoped<IPuertaService, PuertaService>();
             //Repository
+            services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            services.AddScoped<AppDBContext, LoginRepository>();
             services.AddScoped<ISedeRepository, SedeRepository>();
             services.AddScoped<IEmpresaRepository,EmpresaRepository>();
             services.AddScoped<IMenuAccesoRepository, MenuAccesoRepository>();
@@ -63,7 +63,7 @@ namespace CubicoWMSBackend
             services.AddScoped<IEdificioRepository, EdificioRepository>();
             services.AddScoped<IPisoRepository, PisoRepository>();
             services.AddScoped<IVisitaRepository, VisitaRepository>();
-
+            services.AddScoped<IPuertaRepository, PuertaRepository>();
             //cors
             services.AddCors(options => options.AddPolicy("AllowWebApp",
                     builder=> builder.AllowAnyOrigin()
