@@ -59,7 +59,6 @@ namespace ControlNetBackend.Persistence.Repositories
                         VisitaDiaDTO.Fec_Ingreso = DateTime.Parse(oDataReader["Fec_Ingreso"].ToString());
                         VisitaDiaDTO.Hor_Ingreso = oDataReader["Hor_Ingreso"].ToString();
 
-
                         //int.Parse(oDataReader[1].ToString());
 
                         ListaVisitaDia.Add(VisitaDiaDTO);

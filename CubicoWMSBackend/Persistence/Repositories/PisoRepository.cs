@@ -160,7 +160,8 @@ namespace ControlNetBackend.Persistence.Repositories
                     Sqlcmd.Connection = cnx;
                     Sqlcmd.CommandType = CommandType.StoredProcedure;
                     Sqlcmd.CommandText = "SP_S_Listar_Piso_X_Edificio_21";
-
+                    Sqlcmd.Parameters.Clear();
+                    Sqlcmd.Parameters.Add("@Cod_edificio", SqlDbType.Int).Value = COD_EDIFICIO;
                     SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
                     while (oDataReader.Read())
                     {

@@ -2,14 +2,13 @@
 using ControlNetBackend.Domain.Models;
 using ControlNetBackend.DTO;
 using CubicoWMSBackend.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
-using ControlNetBackend.Domain.Models;
 
 namespace ControlNetBackend.Persistence.Repositories
 {

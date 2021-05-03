@@ -49,6 +49,14 @@ namespace CubicoWMSBackend
             services.AddScoped<IPisoService, PisoService>();
             services.AddScoped<IVisitaService, VisitaService>();
             services.AddScoped<IPuertaService, PuertaService>();
+            services.AddScoped<IGrupoAccesosService, Grupo_AccesosService>();
+            services.AddScoped<IPerfilService, PerfilService>();
+            services.AddScoped<ITarjetaAccesoService, TarjetaAccesoService>();
+            services.AddScoped<ITipoPersonalService, TipoPersonalService>();
+            services.AddScoped<ITipoVisitanteService, TipoVisitanteService>();
+            services.AddScoped<IVisitanteService, VisitanteService>();
+            services.AddScoped<IVisitanteNoDeseadoService, VisitanteNoDeseadoService>();
+
             //Repository
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
@@ -64,6 +72,14 @@ namespace CubicoWMSBackend
             services.AddScoped<IPisoRepository, PisoRepository>();
             services.AddScoped<IVisitaRepository, VisitaRepository>();
             services.AddScoped<IPuertaRepository, PuertaRepository>();
+            services.AddScoped<IGrupoAccesosRepository, GrupoAccesosRepository>();
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
+            services.AddScoped<ITarjetaAccesoRepository, TarjetaAccesoRepository>();
+            services.AddScoped<ITipoPersonalRepository, TipoPersonalRepository>();
+            services.AddScoped<ITipoVisitanteRepository, TipoVisitanteRepository>();
+            services.AddScoped<IVisitanteRepository, VisitanteRepository>();
+            services.AddScoped<IVisitanteNoDeseadoRepository, VisitanteNoDeseadoRepository>();
+
             //cors
             services.AddCors(options => options.AddPolicy("AllowWebApp",
                     builder=> builder.AllowAnyOrigin()
