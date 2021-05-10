@@ -15,6 +15,12 @@ namespace ControlNetBackend.DTO
 		public bool ACTIVO { get; set; }
 	}
 
+	public class CentroCosto_usuarioDTO
+	{
+		public int id_user { get; set; }
+	    public int cod_centro_costo { get; set; }
+	
+	}
 
 	public class CentroCostoMantenimientoDTO
 	{

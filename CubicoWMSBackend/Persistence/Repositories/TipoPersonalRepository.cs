@@ -37,8 +37,11 @@ namespace ControlNetBackend.Persistence.Repositories
             var mensaje = getMantenimientoTipoPersonal(TIPO_PERSONAL);
             return mensaje;
         }
+        public Task<List<TipoPersonalDTO>> ListarTipoPersonal_x_usuario(int ID_USER)
+        {
+            throw new NotImplementedException();
+        }
 
-           
 
         public List<TipoPersonalDTO> getListarTipoPersonal()
         {
@@ -204,5 +207,9 @@ namespace ControlNetBackend.Persistence.Repositories
             return MensajeResultado;
         }
 
+        public List<TipoPersonalDTO> getListarTipoPersonal_x_usuario(int ID_USER)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

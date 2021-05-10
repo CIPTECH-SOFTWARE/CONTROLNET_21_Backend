@@ -56,7 +56,9 @@ namespace CubicoWMSBackend
             services.AddScoped<ITipoVisitanteService, TipoVisitanteService>();
             services.AddScoped<IVisitanteService, VisitanteService>();
             services.AddScoped<IVisitanteNoDeseadoService, VisitanteNoDeseadoService>();
-
+            services.AddScoped<IAccesosPermisoService, AccesosPermisoService>();
+            services.AddScoped<ITipoDocumentoService, TipoDocumentoService>();
+            services.AddScoped<IMailingService, MailingService>();
             //Repository
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
@@ -79,7 +81,9 @@ namespace CubicoWMSBackend
             services.AddScoped<ITipoVisitanteRepository, TipoVisitanteRepository>();
             services.AddScoped<IVisitanteRepository, VisitanteRepository>();
             services.AddScoped<IVisitanteNoDeseadoRepository, VisitanteNoDeseadoRepository>();
-
+            services.AddScoped<IAccesoPermisoRepository, AccesoPermisoRepository>();
+            services.AddScoped<ITipoDocumentoRepository, TipoDocumentoRepository>();
+            services.AddScoped<IMailingRepository, MailingRepository>();
             //cors
             services.AddCors(options => options.AddPolicy("AllowWebApp",
                     builder=> builder.AllowAnyOrigin()

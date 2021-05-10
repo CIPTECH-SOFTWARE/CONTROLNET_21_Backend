@@ -17,8 +17,6 @@ namespace ControlNetBackend.DTO
        public string centro_costo { get; set; }
        public string fec_hor_acceso { get; set; }
 
-
-
     }
     public class IngresoVisitaTiempoExcesoSedeDTO
     {

@@ -58,6 +58,46 @@ namespace ControlNetBackend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("LISTA_CENTROCOSTO_FILTRO")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETListaCentroCosto_Filtro(string FILTRO, int COD_EMPRESA)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                var listaCentroCostoEmpresa = await _CentroCostoService.ListarCentroCosto_x_Filtro(FILTRO,COD_EMPRESA);
+                return Ok(listaCentroCostoEmpresa);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("LISTA_CENTROCOSTO_USUARIO")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETListaCentroCosto_Usuario(int ID_USER)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                var listaCentroCostoEmpresa = await _CentroCostoService.ListarCentroCosto_x_Usuario(ID_USER);
+                return Ok(listaCentroCostoEmpresa);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         [HttpPost]
         [Route("MANTENIMIENTO_CENTROCOSTO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

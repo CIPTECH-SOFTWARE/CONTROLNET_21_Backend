@@ -39,8 +39,17 @@ namespace ControlNetBackend.Persistence.Repositories
             var mensaje = getMantenimientoCentroCosto(CENTRO_COSTO);
             return mensaje;
         }
-     
-        
+        public async Task<List<CentroCosto_usuarioDTO>> ListarCentroCosto_x_Usuario(int ID_USER)
+        {
+            var LISTA = getListarCentroCosto_x_Usuario(ID_USER);
+            return LISTA;
+        }
+        public async Task<List<CentroCostoDTO>> ListarCentroCosto_x_Filtro(string FILTRO, int COD_EMPRESA)
+        {
+            var LISTA = getListarCentroCosto_x_Filtro(FILTRO,COD_EMPRESA);
+            return LISTA;
+        }
+
 
         public List<CentroCostoDTO> getListarCentroCosto()
         {
@@ -204,11 +213,108 @@ namespace ControlNetBackend.Persistence.Repositories
 
             return MensajeResultado;
         }
+        public List<CentroCosto_usuarioDTO> getListarCentroCosto_x_Usuario(int ID_USER)
+        {
+            List<CentroCosto_usuarioDTO> ListaCentroCosto_usuarioDTO = new List<CentroCosto_usuarioDTO>();
+            //ListaUsuarioEmpresaDTO = null;
+            string cnxString = _appDBContext.Database.GetConnectionString();
+            SqlConnection cnx = new SqlConnection(cnxString);
+            try
+            {
+                cnx.Open();
+                using (SqlCommand Sqlcmd = new SqlCommand())
+                {
+                    Sqlcmd.Connection = cnx;
+                    Sqlcmd.CommandType = CommandType.StoredProcedure;
+                    Sqlcmd.CommandText = "SP_S_Listar_Centro_Costo_X_Empresa_21";
+                    Sqlcmd.Parameters.Clear();
+                    Sqlcmd.Parameters.Add("@id_user", SqlDbType.Int).Value = ID_USER;
+                    SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
+                    while (oDataReader.Read())
+                    {
+                        CentroCosto_usuarioDTO CentroCosto_usuarioDTO = new CentroCosto_usuarioDTO();
+                        CentroCosto_usuarioDTO.id_user = int.Parse(oDataReader["id_user"].ToString());
+                        CentroCosto_usuarioDTO.cod_centro_costo = int.Parse(oDataReader["cod_centro_cosoto"].ToString());
+
+                        ListaCentroCosto_usuarioDTO.Add(CentroCosto_usuarioDTO);
+                    }
+                }
+            }
+            catch (SqlException sex)
+            {
+
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "CentroCostoRepository/getListarCentroCosto_x_Empresa(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CentroCostoRepository/getListarCentroCosto_x_Empresa() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
+            }
+            finally
+            {
+                if (cnx.State == System.Data.ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
 
 
+            return ListaCentroCosto_usuarioDTO;
+        }
+        public List<CentroCostoDTO> getListarCentroCosto_x_Filtro(string FILTRO, int COD_EMPRESA)
+        {
+            List<CentroCostoDTO> ListaCentroCostoDTO = new List<CentroCostoDTO>();
+            //ListaUsuarioEmpresaDTO = null;
+            string cnxString = _appDBContext.Database.GetConnectionString();
+            SqlConnection cnx = new SqlConnection(cnxString);
+            try
+            {
+                cnx.Open();
+                using (SqlCommand Sqlcmd = new SqlCommand())
+                {
+                    Sqlcmd.Connection = cnx;
+                    Sqlcmd.CommandType = CommandType.StoredProcedure;
+                    Sqlcmd.CommandText = "SP_S_Listar_centro_costo_X_Filtro_21";
+                    Sqlcmd.Parameters.Clear();
+                    Sqlcmd.Parameters.Add("@param_centro_costo", SqlDbType.VarChar,400).Value = FILTRO;
+                    Sqlcmd.Parameters.Add("@Cod_Empresa", SqlDbType.Int).Value = COD_EMPRESA;
+                    SqlDataReader oDataReader = Sqlcmd.ExecuteReader();
+                    while (oDataReader.Read())
+                    {
+                        CentroCostoDTO CentroCostoDTO = new CentroCostoDTO();
+                        CentroCostoDTO.COD_CENTRO_COSTO = int.Parse(oDataReader["COD_CENTRO_COSTO"].ToString());
+                        CentroCostoDTO.DES_CENTRO_COSTO = oDataReader["DES_CENTRO_COSTO"].ToString();
+                        
+                        ListaCentroCostoDTO.Add(CentroCostoDTO);
+                    }
+                }
+            }
+            catch (SqlException sex)
+            {
+
+                eErrorLog mensajeLogError = new eErrorLog(
+                    sex.Message, "CentroCostoRepository/getListarCentroCosto_x_Filtro(). SQL." + sex, "Error Sql");
+                mensajeLogError.RegisterLog();
+            }
+            catch (Exception ex)
+            {
+                eErrorLog mensajeLogError = new eErrorLog(ex.Message, "CentroCostoRepository/getListarCentroCosto_x_Filtro() EX." + ex, "Error");
+                mensajeLogError.RegisterLog();
+            }
+            finally
+            {
+                if (cnx.State == System.Data.ConnectionState.Open)
+                {
+                    cnx.Close();
+                }
+            }
 
 
+            return ListaCentroCostoDTO;
+        }
 
-
+       
     }
 }

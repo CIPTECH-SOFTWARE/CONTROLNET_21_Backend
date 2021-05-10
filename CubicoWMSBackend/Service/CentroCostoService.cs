@@ -17,6 +17,9 @@ namespace ControlNetBackend.Service
         {
             _CentroCostoRepository = CentroCostoRepository;
         }
+       
+        
+        
         public async Task<List<CentroCostoDTO>> ListarCentroCosto()
         {
             return await _CentroCostoRepository.ListarCentroCosto();
@@ -24,6 +27,14 @@ namespace ControlNetBackend.Service
         public async Task<List<CentroCostoDTO>> ListarCentroCosto_x_Empresa(int COD_EMPRESA)
         {
             return await _CentroCostoRepository.ListarCentroCosto_x_Empresa(COD_EMPRESA);
+        }
+        public async Task<List<CentroCostoDTO>> ListarCentroCosto_x_Filtro(string FILTRO, int COD_EMPRESA)
+        {
+            return await _CentroCostoRepository.ListarCentroCosto_x_Filtro(FILTRO, COD_EMPRESA);
+        }
+        public async Task<List<CentroCosto_usuarioDTO>> ListarCentroCosto_x_Usuario(int ID_USER)
+        {
+            return await _CentroCostoRepository.ListarCentroCosto_x_Usuario(ID_USER);
         }
         public async Task<MensajeResultado> MantenimientoCentroCosto(CentroCostoMantenimientoDTO CENTRO_COSTO)
         {

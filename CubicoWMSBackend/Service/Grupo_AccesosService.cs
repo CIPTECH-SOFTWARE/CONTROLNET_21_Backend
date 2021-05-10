@@ -14,6 +14,13 @@ namespace ControlNetBackend.Service
     public class Grupo_AccesosService : IGrupoAccesosService
     {
         private readonly IGrupoAccesosRepository _GrupoAccesosRepository;
+
+        public Grupo_AccesosService(IGrupoAccesosRepository GrupoAccesosRepository)
+        {
+            _GrupoAccesosRepository = GrupoAccesosRepository;
+        }
+
+
         public async Task<List<GrupoAccesosDTO>> ListarGrupoAccesos()
         {
             return await _GrupoAccesosRepository.ListarGrupoAccesos();

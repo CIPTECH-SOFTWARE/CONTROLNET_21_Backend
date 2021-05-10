@@ -46,5 +46,41 @@ namespace CubicoWMSBackend.Service
         {     
         return await _usuarioRepository.Grabar_Usuario_Login(cod_personal,nombre_usuario,email,cod_usuario,cod_sede);
         }
+
+
+
+              
+        public async Task<List<UsuarioDTO>> ListarUsuario()
+        {
+            return await _usuarioRepository.ListarUsuario();
+        }
+
+        public async Task<List<UsuarioDTO>> ListarUsuario_x_perfil(int ID_PERFIL)
+        {
+            return await _usuarioRepository.ListarUsuario_x_perfil(ID_PERFIL);
+        }
+
+        public async Task<List<UsuarioDTO>> ListarUsuario_Codigo_filtro(string COD_USUARIO)
+        {
+            return await _usuarioRepository.ListarUsuario_Codigo_filtro(COD_USUARIO);
+        }
+
+        public async Task<MensajeResultado> Cambio_PasswordUsuario(Usuario_PasswordDTO USUARIO)
+        {
+            return await _usuarioRepository.Cambio_PasswordUsuario(USUARIO);
+        }
+
+        public async Task<MensajeResultado> Grabar_Usuario(UsuarioMantenimientoDTO USUARIO)
+        {
+            return await _usuarioRepository.Grabar_Usuario(USUARIO);
+        }
+
+        public async Task<MensajeResultado> Grabar_UsuarioEmpresa(Usuario_EmpresaDTO USUARIO_EMPRESA)
+        {
+            return await _usuarioRepository.Grabar_UsuarioEmpresa(USUARIO_EMPRESA);
+        }
+
+
+
     }
 }

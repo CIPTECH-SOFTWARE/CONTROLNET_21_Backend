@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using CubicoWMSBackend.Domain.IService;
 using ControlNetBackend.Domain.Models;
-using CubicoWMSBackend.DTO;
+using ControlNetBackend.DTO;
 using CubicoWMSBackend.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -136,5 +136,138 @@ namespace CubicoWMSBackend.Controllers
             }
 
         }
+
+            [HttpGet]
+            [Route("LISTA_USUARIO")]
+            /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+            public async Task<IActionResult> GETListaUsuario()
+            {
+                try
+                {
+                    {
+                        //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                        //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                        var LISTA = await _usuarioService.ListarUsuario();
+                        return Ok(LISTA);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
+            }
+            [HttpGet]
+            [Route("LISTA_USUARIO_PERFIL")]
+            /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+            public async Task<IActionResult> GETListaUsuarioPerfil(int ID_PERFIL)
+            {
+                try
+                {
+                    {
+                        //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                        //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                        var LISTA = await _usuarioService.ListarUsuario_x_perfil(ID_PERFIL);
+                        return Ok(LISTA);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            [HttpGet]
+            [Route("LISTA_USUARIO_CODIGO_FILTRO")]
+            /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+            public async Task<IActionResult> GETListaUsuarioCodigoFiltro(string cod_usuario)
+            {
+                try
+                {
+                    {
+                        //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                        //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                        var LISTA = await _usuarioService.ListarUsuario_Codigo_filtro(cod_usuario);
+                        return Ok(LISTA);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
+            }
+
+
+        [HttpGet]
+        [Route("CAMBIO_NUEVO_PASSWORD_USUARIO")]
+        /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETCambioNuevoUsuario(Usuario_PasswordDTO USUARIO)
+        {
+            try
+            {
+                {
+                    //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var MENSAJE = await _usuarioService.Cambio_PasswordUsuario(USUARIO);
+                    return Ok(MENSAJE);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("GRABAR_USUARIO")]
+        /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETGrabar_Usuario(UsuarioMantenimientoDTO USUARIO)
+        {
+            try
+            {
+                {
+                    //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var MENSAJE = await _usuarioService.Grabar_Usuario(USUARIO);
+                    return Ok(MENSAJE);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("GRABAR_USUARIO_EMPRESA")]
+        /// [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GETGrabar_UsuarioEmpresa(Usuario_EmpresaDTO USUARIO)
+        {
+            try
+            {
+                {
+                    //var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    //int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                    var MENSAJE = await _usuarioService.Grabar_UsuarioEmpresa(USUARIO);
+                    return Ok(MENSAJE);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
     }
 }
+
+    
+
